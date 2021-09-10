@@ -1,5 +1,4 @@
 @font-face {
-    // font-family: 'GmarketSansMedium';
     font-family: 'GmarketSans';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-style: 500;
@@ -22,12 +21,7 @@
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
-    // src: local('Material Icons'),
-        // local('MaterialIcons-Regular'),
-        // url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-        // url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-        // url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+    src: url(https://example.com/MaterialIcons-Regular.eot);
 }
 
 *{
@@ -55,6 +49,7 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
     text-decoration: none;
+    font-family: 'GmarketSans';
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
