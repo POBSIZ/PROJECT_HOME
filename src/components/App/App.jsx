@@ -14,7 +14,11 @@ import Footer from "../base/footer/footer";
 const App = () => {
   return (
     <>
-      <Header></Header>
+      <Header>
+        <Router exact path="./Auth" component={AuthWrapper} />
+        <Router exact path="./Register" component={Register} />
+        <Router exact path="./Profile" component={Profile} />
+      </Header>
       <Main></Main>
       <Footer></Footer>
     </>
