@@ -1,19 +1,16 @@
 import React from 'react';
-import { Link, Route, BrowserRouter } from "react-router-dom";
 import { hot } from 'react-hot-loader';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
-import './assets/css/App.scss';
+import './assets/css/style.scss';
 
-class App extends React.Component {
-    render() {
-        return (
-            <div className="main">
-                <h1>Webpack with React</h1>
-            </div>             
-        );
-    }
+const Footer = () => {
+    return (
+        <footer className="footer">
+            <h1>Footer</h1>
+        </footer>             
+    )
 }
 
-export default hot(module)(App);
+export default hot(module)(Footer);
