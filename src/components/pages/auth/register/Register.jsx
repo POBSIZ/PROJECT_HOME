@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { withRouter } from "react-router-dom";
 
-import "./assets/css/Register.scss";
+import "./assets/css/style.scss";
 
 function Register(props) {
   const [Email, setEmail] = useState("");

@@ -5,12 +5,13 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
 import "./assets/css/style.scss";
-import AuthWrapper from "../../App/Auth";
 
 const Header = () => {
   return (
     <header className="header">
-      <h1 className="header-logo">PROJECT</h1>
+      <Link to="/" className="header-logo">
+        PROJECT
+      </Link>
       <ul className="header_nav">
         <Link to="/notice" className="nav-itm">
           공지
@@ -24,8 +25,8 @@ const Header = () => {
         <Link to="/recruitment" className="nav-itm">
           모집
         </Link>
-        <Link to="./login" className="nav-itm">
-          LOGIN
+        <Link to="/login" className="nav-itm">
+          로그인
         </Link>
       </ul>
     </header>

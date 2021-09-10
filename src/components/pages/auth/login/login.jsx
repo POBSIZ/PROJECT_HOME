@@ -1,23 +1,10 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Link, Route, BrowserRouter, withRouter } from "react-router-dom";
+import React from "react";
+import { hot } from "react-hot-loader";
+import { Link, Route, BrowserRouter } from "react-router-dom";
 
-import "./assets/css/Auth.scss";
+import "./assets/css/style.scss";
 
-function AuthWrapper(props) {
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-
-  const onEmailHandler = (e) => {
-    setEmail(e.currentTarget.value);
-  };
-  const onPasswordHandler = (e) => {
-    setPassword(e.currentTarget.value);
-  };
-  const onSubmitHandler = (e) => {
-    e.preventDefault();
-  };
-
+function Login() {
   //SNS 연동은 Client ID 발급 받으면 생성 예정
   return (
     <div className="container">
@@ -36,8 +23,8 @@ function AuthWrapper(props) {
         />
         <input type="submit" value="Log In" />
         <div className="help-login">
-          <Link to="/Find">아이디/비밀번호 찾기</Link>
-          <Link to="/Register">회원가입</Link>
+          <a href="#">아이디/비밀번호 찾기</a>
+          <Link to="/register">회원가입</Link>
         </div>
       </form>
 
@@ -46,4 +33,4 @@ function AuthWrapper(props) {
   );
 }
 
-export default withRouter(AuthWrapper);
+export default hot(module)(Login);
