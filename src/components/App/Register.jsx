@@ -38,7 +38,6 @@ function Register() {
           <span>이메일</span>
           <input required name="" type="email" placeholder="e-mail" />
         </div>
-
         <input type="submit" value="회원가입" />
       </form>
     </div>
