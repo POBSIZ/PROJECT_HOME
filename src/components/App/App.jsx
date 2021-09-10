@@ -3,9 +3,9 @@ import { hot } from "react-hot-loader";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
-import AuthWrapper from "./Auth";
-import Register from "./Register";
-import Profile from "./Profile";
+import AuthWrapper from "../pages/auth/login/login";
+import Register from "../pages/auth/register/Register";
+import Profile from "../pages/auth/profile/Profile";
 
 import Header from "../base/header/header";
 import Main from "../main/main";

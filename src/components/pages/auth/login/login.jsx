@@ -1,9 +1,10 @@
 import React from "react";
+import { hot } from "react-hot-loader";
 import { Link, Route, BrowserRouter } from "react-router-dom";
 
-import "./assets/css/Auth.scss";
+import "./assets/css/style.scss";
 
-function AuthWrapper() {
+function Login() {
   //SNS 연동은 Client ID 발급 받으면 생성 예정
   return (
     <div className="container">
@@ -23,7 +24,7 @@ function AuthWrapper() {
 
         <div className="help-login">
           <a href="#">아이디/비밀번호 찾기</a>
-          <Link to="/Register">회원가입</Link>
+          <Link to="/register">회원가입</Link>
         </div>
       </form>
 
@@ -32,4 +33,4 @@ function AuthWrapper() {
   );
 }
 
-export default AuthWrapper;
+export default hot(module)(Login);

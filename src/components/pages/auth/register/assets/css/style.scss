@@ -1,12 +1,6 @@
-@charset "utf-8";
-
 $color--border: #dadada;
 $color--white: #fff;
 $color--green: #03c75a;
-
-body {
-  height: 150vh;
-}
 
 .register-form {
   display: flex;
@@ -52,8 +46,8 @@ body {
     font-weight: 700;
     line-height: 49px;
     width: 100%;
-    cursor: pointer;
     background-color: $color--green;
+    color: #fff;
     cursor: pointer;
     padding: 10px 0px;
     border-radius: 5px;
