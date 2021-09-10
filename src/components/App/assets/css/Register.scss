@@ -1,0 +1,62 @@
+@charset "utf-8";
+
+$color--border: #dadada;
+$color--white: #fff;
+$color--green: #03c75a;
+
+body {
+  height: 150vh;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-form__header {
+  margin: 70px 0px 50px 0px;
+  h1 {
+    margin-bottom: 40px;
+    font-size: 40px;
+    font-weight: 600;
+  }
+}
+
+.register-form__container {
+  width: 50%;
+  text-align: center;
+  div {
+    display: flex;
+    justify-content: space-between;
+    span {
+      padding-top: 15px;
+      font-size: 18px;
+      text-align: center;
+    }
+    input {
+      overflow: hidden;
+      width: 70%;
+      border: solid 1px $color--border;
+      padding: 15px 0px;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    input::placeholder {
+      padding-left: 20px;
+    }
+  }
+  input[type="submit"] {
+    margin-top: 40px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 49px;
+    width: 100%;
+    cursor: pointer;
+    background-color: $color--green;
+    cursor: pointer;
+    padding: 10px 0px;
+    border-radius: 5px;
+    border: none;
+  }
+}
