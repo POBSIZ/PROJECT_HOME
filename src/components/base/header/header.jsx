@@ -9,7 +9,7 @@ import './assets/css/style.scss';
 const Header = () => {
     return (
         <header className="header">
-            <h1 className="header-logo">PROJECT</h1>
+            <Link to="/" className="header-logo">PROJECT</Link>
             <ul className="header_nav">
                 <Link to="/notice" className="nav-itm">공지</Link>
                 <Link to="/board" className="nav-itm">게시판</Link>

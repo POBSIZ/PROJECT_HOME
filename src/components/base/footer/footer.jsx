@@ -8,7 +8,9 @@ import './assets/css/style.scss';
 const Footer = () => {
     return (
         <footer className="footer">
-            <h1>Footer</h1>
+            <h1 className="footer-copyright">
+                @Copyright 2021 PROJECT All rights reserved
+            </h1>
         </footer>             
     )
 }
