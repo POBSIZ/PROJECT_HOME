@@ -4,10 +4,6 @@ $color--border: #dadada;
 $color--white: #fff;
 $color--green: #03c75a;
 
-body {
-  height: 100vh;
-}
-
 .container {
   display: flex;
   flex-direction: column;
@@ -49,9 +45,9 @@ body {
     font-weight: 700;
     line-height: 49px;
     width: 100%;
-    cursor: pointer;
     background-color: $color--green;
     cursor: pointer;
+    color: #fff;
     padding: 10px 0px;
     border-radius: 5px;
     border: none;

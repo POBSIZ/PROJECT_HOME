@@ -1,6 +1,7 @@
 import React from "react";
+import { hot } from "react-hot-loader";
 
-import "./assets/css/Profile.scss";
+import "./assets/css/style.scss";
 
 function Profile() {
   return (
@@ -11,4 +12,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default hot(module)(Profile);

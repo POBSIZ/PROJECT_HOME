@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./assets/css/Register.scss";
+import "./assets/css/style.scss";
 
 function Register() {
   // 아이디 중복확인 비밀번호 중복체크: 이후 추가 예정
