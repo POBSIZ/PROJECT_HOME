@@ -6,7 +6,21 @@ function Home() {
   //SNS 연동은 Client ID 발급 받으면 생성 예정
   return (
     <div className="home">
-        Home
+      <div></div>
+      <div>
+        <span>F.A.Q</span>
+        <span>Q</span>
+        <div>
+          <span>hello</span>
+        </div>
+        <span>A</span>
+        <div>
+          <span>hi</span>
+        </div>
+      </div>
+      <div>
+        <span>Contact</span>
+      </div>
     </div>
   );
 }
