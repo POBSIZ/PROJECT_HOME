@@ -16,6 +16,8 @@ const Header = () => {
                 <Link to="/project" className="nav-itm">PROJECT</Link>
                 <Link to="/recruitment" className="nav-itm">모집</Link>
                 <Link to="/login" className="nav-itm">로그인</Link>
+                <Link to="/activity" className="nav-itm">활동내역</Link>
+
             </ul>
         </header>             
     )

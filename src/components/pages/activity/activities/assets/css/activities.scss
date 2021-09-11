@@ -1,0 +1,32 @@
+
+.line{
+    height: 30px;
+    border-bottom: 7px solid gray;
+    margin: 10px;
+    padding :10px;
+    color : gray;
+    display: flex;
+    align-items: center;
+    
+    .line_box{
+        height: 200px;
+        display: flex;
+
+        .project_box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 10px;
+            height: 200px;
+            width: 150px;
+
+            .project_box_img{
+                width: 150px;
+                 height: 100px;
+                 border-radius: 7px ;
+             }
+        }
+    }
+}
+
+
