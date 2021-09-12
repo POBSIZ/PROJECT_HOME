@@ -22,7 +22,7 @@ const Main = () => {
                 <Route exact path="/login" component={Login}></Route>
                 <Route exact path="/register" component={Register}></Route>
                 <Route exact path="/profile" component={Profile}></Route>
-                <Route exact path="/activity" component={Activity}></Route>
+                <Route path="/activity" component={Activity}></Route>
             </Switch>
         </main>             
     )

@@ -1,11 +1,13 @@
 import './assets/css/activities.scss';
-
+import 'aos/dist/aos.css';
 import { Link } from "react-router-dom";
 import Axios from 'axios';
+import Aos from 'aos';
 import React , { useState, useEffect } from 'react'
 
 
 function Firstpage() {
+    const baseurl = 'http://3.35.43.53/'
     const [data, setdata] = useState()
 
     useEffect(() => {
@@ -13,9 +15,11 @@ function Firstpage() {
     }, [])
 
     const getproject = async () => {
-        await Axios.get("http://172.30.1.20:8000/api/v1/activity/", {
+        console.log('실행')
+        await Axios.get(baseurl + "api/v1/activity/", {
         })
             .then((response) => {
+                console.log(response.data)
                 setdata(response.data.data)
             })
             .catch((error) => {
@@ -40,10 +44,16 @@ function Firstpage() {
                                     return (
                                         <div className='project_box'>
                                             <Link to={'activity/' + a.id}>
-                                                <img className='project_box_img' src={'http://172.30.1.20:8000' + a.thumbnail}></img>
+                                                <img className='project_box_img' src={baseurl + a.thumbnail}></img>
                                             </Link>
-                                            <div>{a.title}</div>
-                                            <div>{a.year}년 {a.month}월</div>
+                                            <div className='project_box_text'>
+                                                <div>
+                                                    {a.title}
+                                                </div>
+                                                <div>
+                                                    {a.year} 년 {a.month} 월
+                                                </div>
+                                            </div>
                                         </div>
 
                                     )
@@ -61,8 +71,9 @@ function Firstpage() {
         )
     }
 
+    Aos.init()
     return (
-        <div>
+        <div data-aos="flip-down">
             {data != undefined ? <Showimg></Showimg> : ''}
         </div>
     );

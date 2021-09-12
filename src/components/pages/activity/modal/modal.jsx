@@ -1,15 +1,37 @@
 import './assets/css/modal.scss';
 import 'aos/dist/aos.css';
 
-import React , { useState } from 'react'
+import { useParams } from 'react-router-dom';
+import React , { useState,useEffect } from 'react'
 import Aos from 'aos';
+import Axios from 'axios';
+import { func } from 'prop-types';
 
 
 function Modal({ setmodal }) {
+    const id = useParams().id
+    const [data , setdata] = useState()
+    const baseurl = 'http://3.35.43.53/'
+    useEffect(()=>{
+        get_modal_data()
+    },[])
+    const get_modal_data = async () => {
+        console.log('실행')
+        await Axios.get(baseurl+'api/v1/activity/detail/' +id +'/', {
+        }).then((response) => {
+            console.log(response.data)
+            setdata(response.data)
+        })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
     Aos.init()
     return (
+        
         <>
-            <div style={{ transform: 'translateZ(0) scale(1.2)' }} className="modal" data-aos="zoom-in">
+            {data != undefined ? <div style={{ transform: 'translateZ(0) scale(1.2)' }} className="modal" data-aos="zoom-in">
                 <div className='modal_close'>
                     <button className='modal_close_button' onClick={() => setmodal(false)}>
                         x
@@ -19,36 +41,55 @@ function Modal({ setmodal }) {
                     <div className="modal_div_title">
                         <span>제목입니다.</span>
                     </div>
+                    <Showimg data={data}></Showimg>
                     <div className="closebtnbox">
                     </div>
-                    <div className="body_div">
-                        <div className='img_div'>
-                            <div className='img_div_box'>
-                                이미지칸입니다
-                                </div>
-                            <div className='img_div_button'>
-                                <button className='img_div_arrow'>
-                                    왼쪽
-                                    </button>
-                                <div className='img_div_page'>
-                                    1/10
-                                    </div>
-                                <button className='img_div_arrow'>
-                                    왼쪽
-                                    </button>
-                            </div>
-                        </div>
-                        <div className='text_div'>
-                            설명칸입니다.
-                            </div>
-                    </div>
-                    <div className='footer_div'>
-                        부가설명
+                    <div className='footer_div' >
+                        {data.description.replace('\r\n','<br/>')}
                         </div>
                 </div>
-            </div>
+            </div> :''}
         </>
     );
+}
+
+function Showimg({data}){
+    const [img_index,set_img_index] = useState(0)
+    const baseurl = 'http://3.35.43.53/'
+    const change_img_index = (check) => {
+        if (check=='plus') {
+            if (img_index < data.images.length-1)
+            set_img_index(img_index+1)
+        }
+        if (check=='minus') {
+            if (img_index >0 )
+            set_img_index(img_index-1)
+        }
+    }
+    Aos.init()
+    return(
+            <div className="body_div" >
+                <div className='img_div'>
+                    <div className='img_div_box'>
+                        <img data-aos="fade-right" className='img_div_img' src={baseurl + data.images[img_index]}></img>
+                    </div>
+                    <div   className='img_div_button'>
+                        <button onClick={()=>change_img_index('minus')} className='img_div_arrow'>
+                            왼쪽
+                        </button>
+                        <div  className='img_div_page'>
+                            {img_index+1} / {data.images.length}
+                        </div>
+                        <button onClick={()=>change_img_index('plus')} className='img_div_arrow'>
+                            오른쪽
+                        </button>
+                    </div>
+                </div>
+                <div className='text_div'>
+                    설명칸입니다.
+                    </div>
+            </div>
+    )
 }
 
 export default Modal;
