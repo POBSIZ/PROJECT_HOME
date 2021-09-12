@@ -14,10 +14,11 @@ function App({ match, history }) {
 
                 <React.Fragment>
                     <Route exact path={match.path} component={Fristpage} >
-                        <Fristpage history={history} />
+                        <Fristpage match={match} history={history} />
                     </Route>
-                    <Route path={`${match.path}/:id`} component={Secondpage}>
-                        <Secondpage history={history} match={match} />
+                    <Route path={`${match.path}/:id`} render={({match,history,location})=>(
+                        <Secondpage location={location} history={history} match={match} />
+    )}>
                     </Route>
                 </React.Fragment>
         </div>

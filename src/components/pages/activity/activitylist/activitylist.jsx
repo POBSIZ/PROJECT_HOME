@@ -8,8 +8,12 @@ import Aos from 'aos';
 import Modal from '../modal/modal'
 import Axios from 'axios';
 
-function Secondpage() {
+function Secondpage({match,location,history}) {
+    console.log('2번째',match)
+
     const [modal, setmodal] = useState(false)
+
+    const id = useParams().id
     // console.log(history)
     // let id = history.location.pathname.split('/activity/')[1]
     
@@ -21,7 +25,7 @@ function Secondpage() {
     }, [])
 
     const getproject = async () => {
-        await Axios.get(baseurl+ "api/v1/activity/" + 1 + '/', {
+        await Axios.get(baseurl+ "api/v1/activity/" + id + '/', {
         }).then((response) => {
             console.log(response.data)
             setdata(response.data)

@@ -6,7 +6,8 @@ import Aos from 'aos';
 import React , { useState, useEffect } from 'react'
 
 
-function Firstpage() {
+function Firstpage({match}) {
+    console.log(match)
     const baseurl = 'http://3.35.43.53/'
     const [data, setdata] = useState()
 
@@ -42,8 +43,8 @@ function Firstpage() {
                             {data.map((a) => {
                                 if (a.month == prev) {
                                     return (
-                                        <div className='project_box'>
-                                            <Link to={'activity/' + a.id}>
+                                        <div key={a.id} className='project_box'>
+                                            <Link to={`/activity/${a.id}`}>
                                                 <img className='project_box_img' src={baseurl + a.thumbnail}></img>
                                             </Link>
                                             <div className='project_box_text'>
