@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { hot } from "react-hot-loader";
 import "./assets/css/faq.scss";
 
 function faq({ question, answer }) {
   return (
-    <div className="message">
+    <div className="home_message">
       <div className="message-row--Q">
         <span>Q</span>
         <div className="message__info">
@@ -26,4 +27,4 @@ faq.propTypes = {
   answer: PropTypes.string.isRequired,
 };
 
-export default faq;
+export default hot(module)(faq);

@@ -1,11 +1,12 @@
 import React from "react";
+import { hot } from "react-hot-loader";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./assets/css/contact.scss";
 
 function Contact() {
   return (
-    <div className="contact">
+    <div className="home_contact">
       <div className="contact__insta">
         <img src="https://www.instagram.com/static/images/ico/favicon-192.png/68d99ba29cc8.png" />
         <span>@project_busan</span>
@@ -21,3 +22,5 @@ function Contact() {
     </div>
   );
 }
+
+export default hot(module)(Contact);
