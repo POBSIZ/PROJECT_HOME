@@ -5,52 +5,63 @@ import './scss/NoticeCreate.scss';
 
 export default function NoticeCreate({match}) {
 
-    // const [title, setTitle] = useState('')
-    // const [password, setPassword] = useState('')
-    // const [img, setImage] = useState(null);
+    const [title, setTitle] = useState('')
+    const [password, setPassword] = useState('')
+    const [newImg, setNewImage] = useState();
 
-    // const onImgChange = (e) => { 
-    //   setImage(e.target.files[0]);
-    // }
+    const addFile = async(e) => {
 
-    // const onSubmit = (event) => {
-    //     //event.preventDefault();
-    //     alert('저장되었습니다.')
-    // }
+      setLoading(true)
+      const formData = new FormData();
+      formData.append('image', e.target.file[0]);
+      setNewImage(formData)
+      setLoading(false)
+    }
+
+
+
+    const onSubmit = (event) => {
+        //event.preventDefault();
+        alert('저장되었습니다.')
+    }
 
   return(
-    <div>
-      <div style={{display:'flex' ,flexDirection:'column', border:"1px solid black"}}>
-        <h1 style={{textAlign:'left', marginLeft:50 }}>추가페이지</h1>
-      </div>
+    <div className="wholeContainer">
 
-      {/* <div className="inputBox">
+      <div className="titleText">공지작성</div>
+
+      <div className="inputBox">
         <input 
-          className="titleBox"
+          className="titleInput"
           placeholder="제목" 
           value={title} 
           onChange={(e)=> setTitle(e.target.value)}>       
         </input>
 
-        <input 
-          className="ContentBox" 
+        <textarea
+          className="ContentInput" 
           placeholder="내용" 
           value={password}
           onChange={(e)=> setPassword(e.target.value)}>
-        </input>
+        </textarea>
 
-        <input type='file'
-          className='titleBox'
-          id='file'
-          accept='image/*'
-          name='file'
-          onChange={onImgChange} >
-        </input>
-                
-      
+        <div className="fileContainer">
+          <button>+</button>
+ 
+          <input type='file'
+            id='image'
+            //multiple="multiple"
+            accept='image/*'
+            name='file'
+            onChange={addFile} >
+          </input>
+        </div>
+
       </div >
 
-      <button className="saveButton" onClick={()=>onSubmit()}>저장</button> */}
+      <button className="saveButton" onClick={()=>onSubmit()}>저장</button>
+
+      
     </div>
   );
 }

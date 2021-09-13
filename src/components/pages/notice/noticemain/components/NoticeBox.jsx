@@ -9,9 +9,6 @@ import NoticeDetail from '../../detail/NoticeDetail';
 
 export default function NoticeBox({content, match}) {
 
-  console.log("받아오는거 다 적어봐", content, match)
-
-
   return(
     <Link to={{ pathname: `${match.url}/${content.id}`, state: content }} className="linkStyle">
     <li className="listStyle" style={{backgroundColor:content.backPhoto}}>

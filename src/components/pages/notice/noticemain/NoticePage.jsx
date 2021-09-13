@@ -4,15 +4,26 @@ import { Route, Link, Switch } from 'react-router-dom';
 import './scss/NoticePage.scss';
 import axios from 'axios';
 
-import data from './assets/data.json';
-
 import NoticeBox from './components/NoticeBox';
 import NoticeCreate from '../create/NoticeCreate';
 
 function NoticePage({match}) {
 
-  console.log("매치가 뭘까?", match)
-  console.log("데이터 받아와?", data)
+  const [notice, setData] = useState([]);
+
+  const testAPI = () => {
+    const url = "/api/v1/board/1";
+    axios.get(url)
+    .then((res) => {setData(res.data)
+    })
+    .catch(function(error) {
+        console.log("실패");
+    })
+  }
+
+  useEffect(() => {
+    testAPI()		
+  },[])
 
 
   return(
@@ -23,7 +34,7 @@ function NoticePage({match}) {
       </div >
 
       <div className="listContainer">
-          {data.notice.map((c, i)=> {
+          {notice.map((c, i)=> {
             console.log("동작하긴하니..")
             return(<NoticeBox key={i} content={c} match={match}/>)
           })}

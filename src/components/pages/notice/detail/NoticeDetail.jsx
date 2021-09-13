@@ -11,17 +11,21 @@ export default function NoticeDetail({location}) {
 
   return(
     <div className="container">
+      <div className="testdiv">
 
-      <div className="imageContainer">
-        <img src={testImg}/>
-      </div>
+        <div className="imageContainer">
+          <img src={testImg}/>
+        </div>
 
-      <div className="TextContainer">
-        <h1>{data.title}</h1>
-        <div>{data.content}</div>
-        <div>{data.creator}</div>
-        <div>{data.date}</div>
-        
+        <div className="textContainer">
+          <h1>{data.title}</h1>
+
+          
+          <div>작성자 {data.creator}</div>
+          <div>작성일 {data.date}</div>
+          
+          <div>{data.content}</div>
+        </div>
 
       </div>
       
