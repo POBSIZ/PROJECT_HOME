@@ -1,0 +1,70 @@
+.wholeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+.titleText{ 
+  font-size: 25px;
+}
+  
+.inputBox {
+    margin-top: 20px;
+    width: 70%;
+
+    .titleInput {
+        width: 100%;
+        padding:10px;
+        height: 70px;
+        font-size: 20pt;
+    }
+    .ContentInput {
+        width: 100%;
+        padding:10px;
+        font-size: 12pt;
+        height: 300px;
+    }
+}
+
+
+
+.fileContainer {
+
+  display: flex;
+  flex-direction: row;
+  padding:10px;
+
+  button {
+    font-size: 15pt;
+    height: 25px;
+    border: 1px solid black;
+    margin-right: 10px;
+
+  }
+  input {
+    font-size: 10pt;
+  }
+}
+
+.lastContainer {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+
+}
+
+.beforeImg {
+    border: 1px solid black;
+    margin-left: 10px;
+    width: 100px;
+    height: 150px;
+}
+
+.saveButton {
+    border: 1px solid black;
+    background-color:#4374D9;
+    color: #fff;
+    padding:5px;
+    width: 80px;
+    height: 30px;
+}
