@@ -18,10 +18,10 @@ const Project = () => {
                             <div className="itm-img" style={{backgroundImage: `url(${listImage})`,}}></div>
                             <div className="itm_text">
                                 <h3>TEST</h3>
-                                <p>
+                                {/* <p>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                     Reiciendis voluptatibus maxime ratione ipsam esse perspiciatis,
-                                </p>
+                                </p> */}
                             </div>
                         </li>
                     )

@@ -9,22 +9,17 @@ function faq({ question, answer }) {
       <div className="message-row--Q">
         <span>Q</span>
         <div className="message__info">
-          <p className="message__bubble">{question}</p>
+          <p className="message__bubble">TESTdsadhsajhg</p>
         </div>
       </div>
       <div className="message-row--A">
         <div className="message__info">
-          <p className="message__bubble">{answer}</p>
+          <p className="message__bubble">TEST</p>
         </div>
         <span>A</span>
       </div>
     </div>
   );
 }
-
-faq.propTypes = {
-  question: PropTypes.string.isRequired,
-  answer: PropTypes.string.isRequired,
-};
 
 export default hot(module)(faq);
