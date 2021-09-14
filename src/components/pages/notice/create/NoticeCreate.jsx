@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import './scss/NoticeCreate.scss';
@@ -6,23 +7,24 @@ import './scss/NoticeCreate.scss';
 export default function NoticeCreate({match}) {
 
     const [title, setTitle] = useState('')
-    const [password, setPassword] = useState('')
-    const [newImg, setNewImage] = useState();
+    const [content, setContent] = useState('')
+    const [imgUrl, setImageUrl] = useState();
 
     const addFile = async(e) => {
-
-      setLoading(true)
-      const formData = new FormData();
-      formData.append('image', e.target.file[0]);
-      setNewImage(formData)
-      setLoading(false)
+      setImageUrl(e.target.files[0])
+      console.log(imgUrl)
     }
 
+    const onSubmit = () => {
+      const formData = new FormData();
+      formData.append('thumbnail', imgUrl);
+      formData.append('title', title);
+      formData.append('content', content);
 
+      axios.post('http://3.35.43.53/api/v1/board/1/post', formData)
+      .then((res) => {console.log(res)})
+      .catch((err) => {console.log("업로드 실패")})
 
-    const onSubmit = (event) => {
-        //event.preventDefault();
-        alert('저장되었습니다.')
     }
 
   return(
@@ -41,8 +43,8 @@ export default function NoticeCreate({match}) {
         <textarea
           className="ContentInput" 
           placeholder="내용" 
-          value={password}
-          onChange={(e)=> setPassword(e.target.value)}>
+          value={content}
+          onChange={(e)=> setContent(e.target.value)}>
         </textarea>
 
         <div className="fileContainer">

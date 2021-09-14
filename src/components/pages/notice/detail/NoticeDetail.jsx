@@ -9,12 +9,21 @@ export default function NoticeDetail({location}) {
 
   let data = location.state;
 
+  const file = 'http://3.35.43.53' + `${data.thumbnail}`
+  let create_date = (data.created_date).substring(0,10);
+
   return(
     <div className="container">
-      <div className="testdiv">
 
+      <div className="modifyContainer">
+        <div>수정</div>
+        <div>삭제</div>
+      </div>
+        
+
+      <div className="contentContainer">
         <div className="imageContainer">
-          <img src={testImg}/>
+          <img src={file}/>
         </div>
 
         <div className="textContainer">
@@ -22,7 +31,7 @@ export default function NoticeDetail({location}) {
 
           
           <div>작성자 {data.creator}</div>
-          <div>작성일 {data.date}</div>
+          <div>작성일 {data.create_date}</div>
           
           <div>{data.content}</div>
         </div>

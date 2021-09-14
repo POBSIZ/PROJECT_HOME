@@ -5,20 +5,39 @@ import '../scss/NoticeBox.scss'
 
 import NoticeDetail from '../../detail/NoticeDetail';
 
+import file from '../assets/noticeImage.png';
 
 
 export default function NoticeBox({content, match}) {
 
+  // const file = 'http://3.35.43.53' + `${content.thumbnail}`
+  // let create_date = (content.created_date).substring(0,10);
+
   return(
     <Link to={{ pathname: `${match.url}/${content.id}`, state: content }} className="linkStyle">
-    <li className="listStyle" style={{backgroundColor:content.backPhoto}}>
+    <li className="listStyle">
       
-      <div>
-        <div>
-          <div className="noticeText">{content.title}</div>
+      {/* <div>
+        <div style={{padding:5, textAlign:'center'}}>
+          <div className="noticeText" style={{fontSize:'15pt', fontWeight:'500'}} >{content.title}</div>
           <div className="noticeText" >작성자: {content.creator}</div>
+          <img src={file} style={{width:100, height:100, marginTop:10}}/>
+
           <div className="noticeText" >view: 0</div>
-          <div className="noticeText">{content.date}</div>
+          <div className="noticeText" style={{fontSize:12}}>{create_date}</div>
+          
+        </div>
+      </div> */}
+
+      <div>
+        <div style={{padding:5, textAlign:'center'}}>
+          <div className="noticeText" style={{fontSize:'15pt', fontWeight:'500'}} >{content.title}</div>
+          <div className="noticeText" >작성자: {content.creator}</div>
+          <img src={file} style={{width:100, height:100, marginTop:10}}/>
+
+          <div className="noticeText" >view: 0</div>
+          <div className="noticeText" style={{fontSize:12}}>0913</div>
+          
         </div>
       </div>
       

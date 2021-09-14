@@ -4,26 +4,34 @@ import { Route, Link, Switch } from 'react-router-dom';
 import './scss/NoticePage.scss';
 import axios from 'axios';
 
+import data from './assets/data.json';
+
 import NoticeBox from './components/NoticeBox';
 import NoticeCreate from '../create/NoticeCreate';
 
 function NoticePage({match}) {
 
-  const [notice, setData] = useState([]);
+  //const [notice, setData] = useState([]);
 
-  const testAPI = () => {
-    const url = "/api/v1/board/1";
-    axios.get(url)
-    .then((res) => {setData(res.data)
-    })
-    .catch(function(error) {
-        console.log("실패");
-    })
-  }
+  let notice = data.notice;
+  console.log(notice)
 
-  useEffect(() => {
-    testAPI()		
-  },[])
+  // const testAPI = () => {
+  //   const url = "http://3.35.43.53/api/v1/board/1";
+  //   axios.get(url)
+  //   .then((res) => {setData(res.data)
+  //     console.log(res.data)
+  //   })
+  //   .catch(function(error) {
+  //       console.log("실패");
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   testAPI()		
+  // },[])
+
+ 
 
 
   return(
