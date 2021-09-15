@@ -42,7 +42,7 @@ const Header = ({token}) => {
       <ul className="header_nav" style={menuStyle}>
         <div onClick={menuClose} className="nav-itm close">X</div>
         <Link to="/notice" className="nav-itm">공지</Link>
-        <Link to="/project" className="nav-itm">활동</Link>
+        <Link to="/activity" className="nav-itm">활동</Link>
         <Link to="/recruitment" className="nav-itm">모집</Link>
         {
           token?.length > 0 ?
