@@ -1,4 +1,5 @@
 import './assets/css/modal.scss';
+import './assets/css/modal_mobile.scss';
 import 'aos/dist/aos.css';
 
 import { useParams } from 'react-router-dom';
