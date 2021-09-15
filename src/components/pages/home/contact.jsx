@@ -13,7 +13,7 @@ function Contact() {
       </div>
       <div className="contact__kakao">
         <img src="https://www.kakaocorp.com/page/favicon.ico" />
-        <span>PROJECT</span>
+        <span>project</span>
       </div>
       <div className="contact__email">
         <img src="https://www.gstatic.com/images/branding/product/2x/gmail_2020q4_32dp.png" />
