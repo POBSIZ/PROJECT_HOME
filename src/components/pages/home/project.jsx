@@ -9,6 +9,12 @@ import listImage from './assets/img/1.jpg';
 const Project = () => {
     return (
         <section className="home_project">
+            {/* <p style={{textAlign:"center", fontSize:'20px'}}>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+                Voluptates, fugit laudantium corporis quas necessitatibus 
+                enim vel perferendis cum quia eveniet architecto quo 
+                consequatur rem asperiores. Tempore excepturi quo voluptas est?
+            </p> */}
             <h1 className="home_project-title">활동</h1>
             <ul className="project_list">
 

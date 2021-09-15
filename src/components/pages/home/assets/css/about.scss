@@ -27,4 +27,32 @@
 }
 
 @-webkit-keyframes move_logo { from { top: 88vh; } to { top: 90vh; }  }
-        @keyframes move_logo { from { top: 88vh; } to { top: 90vh; }  }
+@keyframes move_logo { from { top: 88vh; } to { top: 90vh; }  }
+
+
+
+@media screen and (min-width: 280px) {
+    .home_about{
+
+        .home_about-logo{
+            width: 150px;
+        }
+
+        .expend_more{
+            font-size: 30px;
+        }
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .home_about{
+
+        .home_about-logo{
+            width: 500px;
+        }
+
+        .expend_more{
+            font-size: 50px;
+        }
+    }
+}

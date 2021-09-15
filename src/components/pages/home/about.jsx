@@ -9,8 +9,9 @@ import Logo from './assets/img/project.png';
 const About = () => {
   return (
     <section className="home_about">
-        <div className="home_about-logo" style={{backgroundImage: `url(${Logo})`,}}></div>
-        <span className="material-icons expend_more">expand_more</span>
+      <div className="home_about-logo" style={{ backgroundImage: `url(${Logo})`, }}></div>
+      <span className="material-icons expend_more">expand_more</span>
+      
     </section>
   );
 }

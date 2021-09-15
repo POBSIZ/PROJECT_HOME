@@ -71,3 +71,61 @@
         }
     }
 }
+
+
+
+@media screen and (min-width: 280px) {
+    .home_project{
+        padding: 5%;
+    
+        .home_project-title{
+            font-size: 50px;
+        }
+    
+        .project_list{
+            margin-top: 100px;
+            .project_list-itm{
+                width: calc(100%);
+                .itm-img{}
+    
+                .itm_text{
+                    h3{}
+                    p{}
+                }
+            }
+        }
+    
+        .move-project{
+            width: 150px;
+        }
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .home_project{
+        padding: 5%;
+    
+        .home_project-title{
+            font-size: 50px;
+        }
+    
+        .project_list{
+            margin-top: 100px;
+            .project_list-itm{
+                width: calc(100% / 5 - 20px);
+                .itm-img{
+
+                }
+    
+                .itm_text{
+                    h3{}
+                    p{}
+                }
+            }
+        }
+    
+        .move-project{
+            width: 150px;
+        }
+    }
+}
