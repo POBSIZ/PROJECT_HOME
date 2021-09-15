@@ -71,13 +71,19 @@ function Showimg({data}){
             set_img_index(img_index-1)
         }
     }
+    const Img_box = ()=>{
+        Aos.init()
+            return(
+            <div className='img_div_box'>
+                <img data-aos="fade-right" className='img_div_img' src={baseurl + data.images[img_index]}></img>
+            </div>
+            )
+    }
     Aos.init()
     return(
             <div className="body_div" >
                 <div className='img_div'>
-                    <div className='img_div_box'>
-                        <img data-aos="fade-right" className='img_div_img' src={baseurl + data.images[img_index]}></img>
-                    </div>
+                    <Img_box></Img_box>
                     <div   className='img_div_button'>
                         <button onClick={()=>change_img_index('minus')} className='img_div_arrow'>
                             왼쪽
