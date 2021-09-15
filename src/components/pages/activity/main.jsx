@@ -18,7 +18,7 @@ function App({ match, history }) {
                     </Route>
                     <Route path={`${match.path}/:id`} render={({match,history,location})=>(
                         <Secondpage location={location} history={history} match={match} />
-    )}>
+                        )}>
                     </Route>
                 </React.Fragment>
         </div>
