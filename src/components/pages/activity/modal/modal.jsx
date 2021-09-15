@@ -8,16 +8,21 @@ import Axios from 'axios';
 import { func } from 'prop-types';
 
 
-function Modal({ setmodal }) {
+function Modal({ setmodal , detail_id }) {
+    useEffect(()=>{
+        console.log('모달',detail_id)
+    },[detail_id])
     const id = useParams().id
     const [data , setdata] = useState()
     const baseurl = 'http://3.35.43.53/'
+
     useEffect(()=>{
-        get_modal_data()
-    },[])
+        detail_id !=undefined ?  get_modal_data() : 0
+    },[detail_id])
+
     const get_modal_data = async () => {
         console.log('실행')
-        await Axios.get(baseurl+'api/v1/activity/detail/' +id +'/', {
+        await Axios.get(baseurl+'api/v1/activity/detail/' +detail_id +'/', {
         }).then((response) => {
             console.log(response.data)
             setdata(response.data)
@@ -44,8 +49,7 @@ function Modal({ setmodal }) {
                     <Showimg data={data}></Showimg>
                     <div className="closebtnbox">
                     </div>
-                    <div className='footer_div' >
-                        {data.description.replace('\r\n','<br/>')}
+                    <div className='footer_div' dangerouslySetInnerHTML={{ __html: data.description }} >
                         </div>
                 </div>
             </div> :''}
@@ -92,4 +96,4 @@ function Showimg({data}){
     )
 }
 
-export default Modal;
+export default React.memo(Modal);
