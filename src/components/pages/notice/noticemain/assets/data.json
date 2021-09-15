@@ -24,7 +24,7 @@
             "id":2,
             "creator": "Lee",
             "backPhoto":"#D9E5FF",
-            "title": "3번",
+            "title": "3번. 제목이 더 길 경우에 어떻게 될지 봐.",
             "content": "여긴 내용이 들어갈거야",
             "date": "2021-09-07",
             "view":0
@@ -35,7 +35,7 @@
             "creator": "Lee",
             "backPhoto":"#EAEAEA",
             "title": "4번",
-            "content": "여긴 내용이 들어갈거야",
+            "content": "한국어를 사랑하는 외국인 친구들의 글로벌 멘토로써 한국어 능력...",
             "date": "2021-09-07",
             "view":0
 

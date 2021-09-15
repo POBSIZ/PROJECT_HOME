@@ -15,6 +15,11 @@ export default function NoticeDetail({location}) {
   return(
     <div className="container">
 
+      <div className="listBack_container">
+        <div>=</div>
+        <Link to="/notice" className="nav-itm">목록</Link>
+      </div>
+
       <div className="modifyContainer">
         <div>수정</div>
         <div>삭제</div>
@@ -29,7 +34,6 @@ export default function NoticeDetail({location}) {
         <div className="textContainer">
           <h1>{data.title}</h1>
 
-          
           <div>작성자 {data.creator}</div>
           <div>작성일 {data.create_date}</div>
           

@@ -25,14 +25,12 @@ const Main = () => {
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/register" component={Register}></Route>
         <Route exact path="/profile" component={Profile}></Route>
-        <Route exact path="/find" component={Find}></Route>
 
         <Route exact path="/notice" component={NoticePage} />
         <Route path="/notice/create" component={NoticeCreate} />
         <Route path="/notice/:id" component={NoticeDetail} />
       </Switch>
-    </main>
-  );
-};
-
+    </main>             
+  )
+}
 export default hot(module)(Main);

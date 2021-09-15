@@ -5,13 +5,13 @@ import '../scss/NoticeBox.scss'
 
 import NoticeDetail from '../../detail/NoticeDetail';
 
-import file from '../assets/noticeImage.png';
+//import file from '../assets/noticeImage.png';
 
 
 export default function NoticeBox({content, match}) {
 
-  // const file = 'http://3.35.43.53' + `${content.thumbnail}`
-  // let create_date = (content.created_date).substring(0,10);
+  const file = 'http://3.35.43.53' + `${content.thumbnail}`
+  let create_date = (content.created_date).substring(0,10);
 
   return(
     <Link to={{ pathname: `${match.url}/${content.id}`, state: content }} className="linkStyle">
@@ -36,7 +36,7 @@ export default function NoticeBox({content, match}) {
           <img src={file} style={{width:100, height:100, marginTop:10}}/>
 
           <div className="noticeText" >view: 0</div>
-          <div className="noticeText" style={{fontSize:12}}>0913</div>
+          <div className="noticeText" style={{fontSize:12}}>{create_date}</div>
           
         </div>
       </div>
