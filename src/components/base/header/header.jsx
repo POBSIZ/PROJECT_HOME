@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { hot } from "react-hot-loader";
 import { Link, Route, Switch, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -9,10 +9,28 @@ import "./assets/css/style.scss";
 const Header = ({token}) => {
   const history = useHistory();
 
+  const [menuStyle, setMenuStyle] = useState({
+    top: '',
+    backgroundColor: '',
+  });
+  
   const logout = () => {
     localStorage.clear('access_token');
     history.push('/');
     location.reload();
+  }
+  
+  const menuOpen = () => {
+    setMenuStyle({
+      top: '0px',
+      backgroundColor: 'rgba(0, 0, 0, 0.144)',
+      opacity: '100%',
+    })
+    // console.log('open');
+  }
+
+  const menuClose = () =>{
+    setMenuStyle({top: '',})
   }
 
   return (
@@ -20,7 +38,9 @@ const Header = ({token}) => {
       <Link to="/" className="header-logo">
         PROJECT
       </Link>
-      <ul className="header_nav">
+      <div className="header_nav-tab" onClick={menuOpen}><span className="material-icons">menu</span></div>
+      <ul className="header_nav" style={menuStyle}>
+        <div onClick={menuClose} className="nav-itm close">X</div>
         <Link to="/notice" className="nav-itm">공지</Link>
         <Link to="/project" className="nav-itm">활동</Link>
         <Link to="/recruitment" className="nav-itm">모집</Link>
@@ -33,6 +53,7 @@ const Header = ({token}) => {
       </ul>
     </header>
   );
+  
 };
 
 export default hot(module)(Header);
