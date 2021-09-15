@@ -20,9 +20,10 @@ export default function NoticeCreate({match}) {
     }
 
     const addImage = (e) => {
-      //const thumbnail = e.target.files[0]
+      const thumbnail = e.target.files[0]
+      console.log("썸네일 제발 찍혀라", thumbnail)
       //const lookImg = URL.createObjectURL(thumbnail);
-      setImageUrl(e.target.files[0])
+      setImageUrl(thumbnail)
     }
 
     // const addFile = (e) => {
@@ -43,42 +44,45 @@ export default function NoticeCreate({match}) {
       e.persist();
       e.preventDefault();
 
-      console.log("이타겟", e.target)
-      console.log("썸네일 타겟", e.target.image.value)
+      // console.log("이타겟", e.target)
+      // console.log("썸네일 타겟", e.target.image.value)
 
       const formData = new FormData();
-      // formData.append('thumbnail', e.target.thumbnail.value);
-      // formData.append('title', e.target.title.value);
-      // formData.append('content', e.target.content.value);
-      // formData.append('thumbnail', e.target.thumbnail.value);
+      formData.append('thumbnail', imgUrl);
+      formData.append('title', title);
+      formData.append('content', content);
+
 
       //formData.append('access_token', content);
-
       // for (let i=0; i>fileUrl.length; i++) {
       //   formData.append('files['+i+']', fileUrl[i]);
       //   console.log("파일 하나하나의 정보는?", fileUrl[i])
       // }
       
-      const postBoard = await fetch('http://172.30.1.58:8000/api/v1/board/1/post',{
-        method: 'POST',
+      // const postBoard = await fetch('http://172.30.1.58:8000/api/v1/board/1/post',{
+      //   method: 'POST',
+      //   headers:{
+      //     Authorization: `jwt ${token}`,
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body:JSON.stringify({
+      //     title:title,
+      //     content:content,
+      //     thumbnail: imgUrl
+      //   }), 
+      // })
+      // const resData = await postBoard.json(); 
+      // console.log(resData)
+      
+      axios.post('http://3.35.43.53/api/v1/board/1/post', formData, 
+      {
         headers:{
           Authorization: `jwt ${token}`,
           'Content-Type': 'application/json'
-        },
-        body:JSON.stringify(
-          {
-            title: e.target.title.value,
-            content: e.target.content.value,
-            thumbnail: e.target.image.value
-          }
-        ), 
+          },
       })
-      const resData = await postBoard.json(); 
-      console.log(resData)
-      
-      // axios.post('http://3.35.43.53/api/v1/board/1/post', config, formData)
-      // .then((res) => {console.log(res)})
-      // .catch((err) => {console.log("업로드 실패")})
+      .then((res) => {console.log(res)})
+      .catch((err) => {console.log("업로드 실패")})
     }
 
   return(
@@ -88,10 +92,9 @@ export default function NoticeCreate({match}) {
 
       <form className="input_container" onSubmit={onSubmit}>
         <input 
-          name="title"
           className="titleInput"
           placeholder="제목" 
-          // value={title} 
+          value={title} 
           onChange={(e)=> setTitle(e.target.value)}>       
         </input>
 
@@ -99,23 +102,21 @@ export default function NoticeCreate({match}) {
           name="content"
           className="ContentInput" 
           placeholder="내용" 
-          // value={content}
-          // onChange={(e)=> setContent(e.target.value)}
+          value={content}
+          onChange={(e)=> setContent(e.target.value)}
         >
         </textarea>
+
         <input type='file'
-          // name="thumbnail"
           id='image'
           accept='image/*'
           name='image'
-          //onChange={addImage} 
+          onChange={addImage} 
         >
         </input>
 
         <div className="fileContainer">
           {/* <button>+</button> */}
- 
-
           {/* <input type='file'
             id='file'
             multiple="multiple"
