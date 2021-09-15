@@ -13,8 +13,8 @@ const App = () => {
   return (
     <>
       <Header token={token}></Header>
-      <Main token={token}></Main>
-      <Footer token={token}></Footer>
+      <Main></Main>
+      <Footer></Footer>
     </>
   );
 };

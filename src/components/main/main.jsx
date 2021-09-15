@@ -22,10 +22,12 @@ const Main = () => {
     <main className="main">
       <Switch>
         <Route exact path="/" component={Home}></Route>
+
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/register" component={Register}></Route>
         <Route exact path="/profile" component={Profile}></Route>
         <Route path="/activity" component={Activity}></Route>
+        <Route exact path="/find" component={Find}></Route>
         <Route exact path="/notice" component={NoticePage} />
         <Route path="/notice/create" component={NoticeCreate} />
         <Route path="/notice/:id" component={NoticeDetail} />
