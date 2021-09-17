@@ -1,4 +1,6 @@
 import './assets/css/activities.scss';
+import './assets/css/activites_mobile.scss';
+
 import 'aos/dist/aos.css';
 import { Link } from "react-router-dom";
 import Axios from 'axios';
