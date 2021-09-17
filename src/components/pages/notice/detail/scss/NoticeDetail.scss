@@ -24,9 +24,11 @@
   justify-content: right;
   margin-bottom: 15px;
 
-  div {
-    padding:5px;
+  button {
+    padding:3px;
+    width: 50px;
     margin-left: 10px;
+    background-color: white;
     border:1px solid black;
     text-align: center;
   }
