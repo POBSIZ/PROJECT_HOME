@@ -56,7 +56,7 @@ const Login = () => {
         />
         <input type="submit" value="Log In" />
         <div className="help-login">
-          <Link to="/find">아이디/비밀번호 찾기</Link>
+          {/* <Link to="/find">아이디/비밀번호 찾기</Link> */}
           <Link to="/register">회원가입</Link>
         </div>
       </form>

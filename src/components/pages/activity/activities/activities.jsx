@@ -31,11 +31,11 @@ function Firstpage({match}) {
     const Showimg = () => {
         const arr = []
         let prev = 0
-        data.map((v) => {
+        data.map((v, i) => {
             if (prev != v.month) {
                 prev = v.month
                 arr.push(
-                    <>
+                    <div key={i}>
                         <div className='line'>
                             {v.year}년 {v.month}월
                         </div>
@@ -61,7 +61,7 @@ function Firstpage({match}) {
                                 }
                             })}
                         </div>
-                    </>
+                    </div>
                 )
             }
         })
