@@ -1,35 +1,49 @@
 @media all and (max-width:600px) {
     .modal {
         box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
-        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5) ;
+        position: fixed;
         z-index: 110;
-        top: 10%;
-        left: 10%;
-        width: 80%;
-        background-color: white;
-    
-        .modal_close{
+        width: 95vw;
+        height: 100vh;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        padding: 0;
+        margin: 0 auto;
+        overflow : auto;
+        .modal_div{
+            margin-top :50px;
+            background-color: white;
+            border-radius: 10px;
+            width: 100%;
             display: flex;
-            justify-content: flex-end;
-            margin-top: 5px;
-    
+            justify-content: center;
+        .modal_close{
+            position: fixed;
+            right: 0;
+            width: 100%;
             .modal_close_button{
+                position: fixed;
+                right: 5px;
                 background-color: white;
                 border: 2px solid gray;
                 border-radius: 16px;
                 margin: 5px;
+                margin-right: 7px;
                 height: 30px;
                 width: 30px;
                 cursor: pointer;
             }
     
         }
+    }
     
-        .modal_div{
-            border: 2px solid rebeccapurple;
+        .modal_div_des{
+
             justify-content: center;
             margin: 5px;
-            margin-top : 0px;
+            margin-top : 50px;
 
             .modal_div_title{
                 display: flex;
@@ -39,7 +53,6 @@
     
             // footer 시작
             .footer_div{
-                border: 2px solid greenyellow;
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
@@ -54,7 +67,6 @@
         display: flex;
         flex-direction: column;
         .img_div{
-            border: 2px solid gold;
             height: 300px;
             width: 100%;
 
@@ -80,7 +92,6 @@
                     cursor: pointer;
                     margin: 10px;
                     background-color: white;
-                    border: 2px solid gray;
                     border-radius: 3px;
                 }
     
@@ -92,10 +103,8 @@
         }
     
         .text_div{
-            border: 2px solid skyblue;
             height: 100px;
             width: 100%;
-            margin: 5px;
             display: flex;
             align-items: center;
             justify-content: center;

@@ -35,15 +35,16 @@ function Modal({ setmodal , detail_id }) {
 
     Aos.init()
     return (
-        
-        <>
-            {data != undefined ? <div style={{ transform: 'translateZ(0) scale(1.2)' }} className="modal" data-aos="zoom-in">
+        <div  className="modal" >
+            {data != undefined ? 
+            
+                <div className="modal_div">
                 <div className='modal_close'>
                     <button className='modal_close_button' onClick={() => setmodal(false)}>
                         x
                             </button>
                 </div>
-                <div className='modal_div'>
+                <div className='modal_div_des'>
                     <div className="modal_div_title">
                         <span>제목입니다.</span>
                     </div>
@@ -53,8 +54,9 @@ function Modal({ setmodal , detail_id }) {
                     <div className='footer_div' dangerouslySetInnerHTML={{ __html: data.description }} >
                         </div>
                 </div>
-            </div> :''}
-        </>
+                </div>
+             :''}
+        </div>
     );
 }
 
