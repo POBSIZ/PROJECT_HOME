@@ -49,6 +49,7 @@ export default function NoticeCreate({match}) {
 
     const onSubmit = async (e) => {
 
+      console.log("실행 자체가 안되네..?")
       console.log("파일 여러개 리스트 담겼니?", fileUrl)
       
       const formData = new FormData();

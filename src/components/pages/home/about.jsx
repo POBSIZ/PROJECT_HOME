@@ -5,6 +5,7 @@ import { Link, Route, BrowserRouter } from "react-router-dom";
 import "./assets/css/about.scss";
 
 import Logo from './assets/img/project.png';
+import Contact from "./contact";
 
 const About = () => {
   return (
