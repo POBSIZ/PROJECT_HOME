@@ -1,10 +1,9 @@
-## HowToStart
->1. `npm install` 
->2. `npm start` 
+## PROJECT 홈페이지
+>- 안녕하세요! 
 
-## Module
->- `React`
->- `Typescript`
->- `Webpack`
->- `Babel`
->- `Sass`
+## Contributors
+>- 허상원
+>- 조현우
+>- 박슬빈
+>- 오성은
+>- 황현정
