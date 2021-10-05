@@ -33,13 +33,28 @@ function Firstpage({match}) {
     const Showimg = () => {
         const arr = []
         let prev = 0
+        let prev_year = 0
         data.map((v) => {
+            if( prev_year != v.year){
+                arr.push(
+                    <div className='line_text'>
+                    <div className='line_text_div'></div>
+                    <div className='line_text_year'>
+                        {v.year}년
+                    </div> 
+                </div>
+                )
+            }
             if (prev != v.month) {
                 prev = v.month
+                prev_year = v.year
                 arr.push(
                     <>
-                        <div className='line'>
-                            {v.year}년 {v.month}월
+
+                        <div className='line_text'>
+                        <div className='line_text_div_month'></div>
+                            <div className='line_text_month'>{v.month}월
+                            </div>
                         </div>
                         <div className='line_box'>
                             {data.map((a) => {
@@ -68,7 +83,7 @@ function Firstpage({match}) {
             }
         })
         return (
-            <div >
+            <div className='main_width_box'>
                 {arr}
             </div>
         )
@@ -76,8 +91,10 @@ function Firstpage({match}) {
 
     Aos.init()
     return (
-        <div data-aos="flip-down">
+        <div data-aos="flip-down" >
+            <div className='main_first'>
             {data != undefined ? <Showimg></Showimg> : ''}
+            </div>
         </div>
     );
 }

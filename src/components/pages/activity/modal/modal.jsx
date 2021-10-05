@@ -48,7 +48,7 @@ function Modal({ setmodal , detail_id }) {
                     <div className="modal_div_title">
                         <span>제목입니다.</span>
                     </div>
-                    <Showimg data={data}></Showimg>
+                    <Showimg detail_id={detail_id} data={data}></Showimg>
                     <div className="closebtnbox">
                     </div>
                     <div className='footer_div' dangerouslySetInnerHTML={{ __html: data.description }} >
@@ -60,7 +60,7 @@ function Modal({ setmodal , detail_id }) {
     );
 }
 
-function Showimg({data}){
+function Showimg({data,detail_id}){
     const [img_index,set_img_index] = useState(0)
     const baseurl = 'http://3.35.43.53/'
     const change_img_index = (check) => {
@@ -95,6 +95,8 @@ function Showimg({data}){
                         </div>
                         <button onClick={()=>change_img_index('plus')} className='img_div_arrow'>
                             오른쪽
+                        </button>
+                        <button className='img_div_arrow' onClick={() => window.open(baseurl+'api/v1/activity/file/'+ detail_id, '_blank')}>PDF 열기
                         </button>
                     </div>
                 </div>
