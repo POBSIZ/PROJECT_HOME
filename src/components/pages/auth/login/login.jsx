@@ -1,6 +1,7 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import { Link, Route, BrowserRouter, useHistory } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
 import Media from "react-media";
 
 import "./assets/css/style.scss";
@@ -55,6 +56,11 @@ const Login = () => {
           placeholder="비밀번호를 입력해주세요"
         />
         <input type="submit" value="Log In" />
+        <div id="social-login">
+          <GoogleLogin />
+          <button id="kakaoIdLogin">KaKao</button>
+          <button id="naverIdLogin">Naver</button>
+        </div>
         <div className="help-login">
           <Link to="/find">아이디/비밀번호 찾기</Link>
           <Link to="/register">회원가입</Link>
