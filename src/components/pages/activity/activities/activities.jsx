@@ -34,10 +34,10 @@ function Firstpage({match}) {
         const arr = []
         let prev = 0
         let prev_year = 0
-        data.map((v) => {
+        data.map((v,i) => {
             if( prev_year != v.year){
                 arr.push(
-                    <div className='line_text'>
+                    <div className='line_text' key={i}>
                     <div className='line_text_div'></div>
                     <div className='line_text_year'>
                         {v.year}년
@@ -49,8 +49,7 @@ function Firstpage({match}) {
                 prev = v.month
                 prev_year = v.year
                 arr.push(
-                    <>
-
+                    <div key={v.month}>
                         <div className='line_text'>
                         <div className='line_text_div_month'></div>
                             <div className='line_text_month'>{v.month}월
@@ -65,12 +64,13 @@ function Firstpage({match}) {
                                                 <img className='project_box_img' src={baseurl + a.thumbnail}></img>
                                             </Link>
                                             <div className='project_box_text'>
-                                                <div>
+                                                <div className='project_box_text_title'>
                                                     {a.title}
                                                 </div>
-                                                <div>
-                                                    {a.year} 년 {a.month} 월
-                                                </div>
+                                                <div style={{'fontSize' : '13px'}}>
+                                                    {a.description}
+                                                    </div>
+                                               
                                             </div>
                                         </div>
 
@@ -78,7 +78,7 @@ function Firstpage({match}) {
                                 }
                             })}
                         </div>
-                    </>
+                    </div>
                 )
             }
         })
