@@ -10,7 +10,7 @@ function App({ match, history }) {
 
     // 'http://172.30.1.18:8000/api/v1/activity/detail/' + id
     return (
-        <div className="App">
+        <div>
 
                 <React.Fragment>
                     <Route exact path={match.path} component={Fristpage} >
