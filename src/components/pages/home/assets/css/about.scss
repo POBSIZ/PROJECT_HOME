@@ -1,4 +1,4 @@
-.home_about{
+/*.home_about{
     display: flex;
     justify-content: center;
     overflow: hidden;
@@ -14,7 +14,6 @@
         margin: auto;
         margin-top: 200px;
     }
-
     .expend_more{
         position: absolute;
         font-size: 50px;
@@ -23,36 +22,63 @@
         -webkit-animation: 1s ease-in-out 0s infinite alternate move_logo;
         animation: 1s ease-in-out 0s infinite alternate move_logo;
     }
+}*/
 
+.about__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  height: 85vh;
+  .about__main__name {
+    margin-top: 50px;
+    font-size: 80px;
+    font-weight: bold;
+  }
+  .about__main__desc {
+    margin-top: 10px;
+    font-size: 30px;
+    font-weight: 400;
+  }
 }
 
-@-webkit-keyframes move_logo { from { top: 88vh; } to { top: 90vh; }  }
-@keyframes move_logo { from { top: 88vh; } to { top: 90vh; }  }
-
-
+@-webkit-keyframes move_logo {
+  from {
+    top: 88vh;
+  }
+  to {
+    top: 90vh;
+  }
+}
+@keyframes move_logo {
+  from {
+    top: 88vh;
+  }
+  to {
+    top: 90vh;
+  }
+}
 
 @media screen and (min-width: 280px) {
-    .home_about{
-
-        .home_about-logo{
-            width: 150px;
-        }
-
-        .expend_more{
-            font-size: 30px;
-        }
+  .home_about {
+    .home_about-logo {
+      width: 150px;
     }
+
+    .expend_more {
+      font-size: 30px;
+    }
+  }
 }
 
 @media screen and (min-width: 720px) {
-    .home_about{
-
-        .home_about-logo{
-            width: 500px;
-        }
-
-        .expend_more{
-            font-size: 50px;
-        }
+  .home_about {
+    .home_about-logo {
+      width: 500px;
     }
+
+    .expend_more {
+      font-size: 50px;
+    }
+  }
 }
