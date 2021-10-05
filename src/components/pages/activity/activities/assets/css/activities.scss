@@ -1,28 +1,71 @@
-.line{
-    height: 30px;
-    border-bottom: 7px solid gray;
-    margin: 10px;
-    padding :10px;
-    color : gray;
+@media all and (min-width:600px) {
+.main_width_box{
+    width: 80%;
+}
+.line_text{
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    .line_text_top_box{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .line_text_div{
+        width: 52%;
+        height: 2px;
+        background-image: linear-gradient(to right, #6070FF 0%, #D62839 100%);
+        position: absolute;
+        margin-bottom: 6px;
+    }
+    .line_text_div_month{
+        width: 20%;
+        height: 2px;
+        background-image: linear-gradient(to right, #6070FF 0%, #D62839 100%);
+        // border: 1px solid linear-gradient(to right, #01c9ca 0%, #3886FF 100%);
+        position:absolute;
+        margin-bottom: 3px;
+    }
+    .line_text_year{
+        background-color: white;
+        font-size: 30px;
+        font-style: bold;
+        z-index: 100;
+    }
+    .line_text_month{
+        background-color: white;
+        font-size: 20px;
+        font-style: bold;
+        z-index: 100;
+    }
 
 }
-.line_box{
-    height: 250px;
+.main_first{
     display: flex;
+    justify-content: center;
+    margin-top : 30px;
+}
 
+.line_box{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     .project_box{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border: 1px solid whitesmoke;
+        margin: 2.5%;
+        padding: 2.5%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 10px;
-        height: 250px;
-        width: 150px;
-
+        width: 30%;
+        align-items: center;
         .project_box_img{
-            width: 150px;
-            height: 200px;
+            width: 100%;
+            height: 250px;
             border-radius: 7px ;
          }
         .project_box_text{
@@ -32,5 +75,4 @@
         }
     }
 }
-
-
+}
