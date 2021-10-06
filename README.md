@@ -7,3 +7,14 @@
 > `박슬빈`
 > `오성은`
 > `황현정`
+
+## Module
+
+> - `React`
+> - `Typescript`
+> - `Webpack`
+> - `Babel`
+> - `Sass`
+
+## install
+> - `npm install react-google-login`
