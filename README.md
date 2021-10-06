@@ -1,7 +1,12 @@
-## HowToStart
+## PROJECT 홈페이지
+안녕하세요! 
 
-> 1.  `npm install`
-> 2.  `npm start`
+## Contributors
+> `상원`
+> `조현우`
+> `박슬빈`
+> `오성은`
+> `황현정`
 
 ## Module
 
@@ -12,5 +17,4 @@
 > - `Sass`
 
 ## install
-
 > - `npm install react-google-login`
