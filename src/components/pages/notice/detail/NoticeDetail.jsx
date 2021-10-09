@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Route, Link, Switch, useHistory } from 'react-router-dom';
+import { useCookies } from "react-cookie";
 import './scss/NoticeDetail.scss';
 
 
@@ -10,6 +11,8 @@ export default function NoticeDetail({location}) {
 
   const [files, setFiles] = useState([]);
   const [data, setData] = useState([]);
+  const [userdata, setUserData] = useState([]);
+  const [cookies, setCookie] = useCookies();
 
   const history = useHistory();
   let location_data = location.state;
@@ -24,7 +27,6 @@ export default function NoticeDetail({location}) {
 
   const getNoticeDetail = () => {
     const url = 'http://3.35.43.53/api/v1/board/1/post/'+`${dataId}`;
-
     axios.get(url)
     .then((res) => {
       setData(res.data);
@@ -35,7 +37,45 @@ export default function NoticeDetail({location}) {
     .catch(function(error) {
         console.log("실패");
     })
+  }
+
+
+  const getUserData = () => {
+    axios.get('http://3.35.43.53/api/v1/users/me',  {
+      headers:{
+        Authorization: `jwt ${token}`,
+        'Content-Type': 'application/json'
+        },
+    })
+    .then((res) => {
+      setUserData(res.data);
+      console.log("유저 데이터", res.data)
+    })
+    .catch(function(error) {
+        console.log("유저데이터실패");
+    })
+  }
+
+
+  const getCookieValue = (key) => {
+    // let cookieKey = key + "="; 
+    // let result = "";
+    // const cookieArr = document.cookie.split(";");
     
+    // for(let i = 0; i < cookieArr.length; i++) {
+    //   if(cookieArr[i][0] === " ") {
+    //     cookieArr[i] = cookieArr[i].substring(1);
+    //   }
+      
+    //   if(cookieArr[i].indexOf(cookieKey) === 0) {
+    //     result = cookieArr[i].slice(cookieKey.length, cookieArr[i].length);
+    //     return result;
+    //   }
+    // }
+    // console.log("받아온 쿠기가 있어?", result)
+    // return result;
+
+    // Cookies.get()
   }
 
   const downloadFunc = () => {
@@ -102,7 +142,8 @@ export default function NoticeDetail({location}) {
 
   useEffect(()=> {
     getNoticeDetail();
-    
+    getUserData();
+    //getCookieValue();
 
   }, [])
 
@@ -123,13 +164,13 @@ export default function NoticeDetail({location}) {
           <span className="hits_text">{data.hits}</span>
         </div>
 
-        {token == undefined ? 
-          <div></div>
+        { userdata.is_superuser == true ? 
+          <div className="button_box">
+            {/* <button>수정</button> */}
+            <button onClick={()=>deleteFunc()}>삭제</button>
+          </div>
         :
-        <div className="button_box">
-          {/* <button>수정</button> */}
-          <button onClick={()=>deleteFunc()}>삭제</button>
-        </div>
+          <div></div>
         }
       </div>
         

@@ -126,7 +126,7 @@ export default function NoticeCreate({match}) {
 
           <input type='file'
             id='file'
-            multiple="multiple"
+            //multiple="multiple"
             accept='file/*'
             name='file'
             onChange={addFile} >

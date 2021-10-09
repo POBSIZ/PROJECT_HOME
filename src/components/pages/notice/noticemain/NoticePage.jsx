@@ -14,6 +14,7 @@ function NoticePage({match}) {
   console.log("토큰이 나오나?", token)
 
   const [notice, setData] = useState([]);
+  const [userdata, setUserData] = useState([]);
 
 
   const getNoticeAPI = () => {
@@ -29,10 +30,26 @@ function NoticePage({match}) {
     })
   }
 
+  const getUserData = () => {
+    axios.get('http://3.35.43.53/api/v1/users/me',  {
+      headers:{
+        Authorization: `jwt ${token}`,
+        'Content-Type': 'application/json'
+        },
+    })
+    .then((res) => {
+      setUserData(res.data);
+      console.log("유저 데이터", res.data)
+    })
+    .catch(function(error) {
+        console.log("유저데이터실패");
+    })
+  }
+
 
   useEffect(() => {
-    getNoticeAPI()	
-
+    getNoticeAPI();	
+    getUserData();
   },[])
 
  
@@ -45,10 +62,10 @@ function NoticePage({match}) {
         </div>
 
         <div className="add_text">
-          {token == undefined ? 
-            <div></div>
-          :
+          { userdata.is_superuser == true ? 
             <span><Link to={`${match.url}/create`}>추가</Link></span>
+          :
+            <div></div>
           }
         </div>
       </div >
