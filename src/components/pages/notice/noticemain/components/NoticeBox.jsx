@@ -6,15 +6,28 @@ import '../scss/NoticeBox.scss'
 import NoticeDetail from '../../detail/NoticeDetail';
 
 import eye from '../assets/eye.png'
-
+import default_img from '../assets/default_img.png'
 
 
 export default function NoticeBox({content, match}) {
 
-  const file = 'http://3.35.43.53' + `${content.thumbnail}`
+  const [image, setImage] = useState('')
   let create_date = (content.created_date).substring(0,10);
 
   const token = localStorage?.getItem('access_token');
+
+  const getImageUrl = () => {
+    if (content.thumbnail == "/media/undefined") {
+      setImage(default_img)
+      
+    } else {
+      setImage('http://3.35.43.53' + `${content.thumbnail}`)
+    }
+  }
+
+  useEffect(()=> {
+    getImageUrl();
+  })
 
 
   return(
@@ -22,7 +35,7 @@ export default function NoticeBox({content, match}) {
       <div className="noticeBox_container">
         
         <div className="image_container">
-          <img className="img_style" src={file} />
+          <img className="img_style" src={image} />
         </div>
 
         <div className="text_container">

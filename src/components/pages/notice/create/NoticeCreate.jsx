@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Route, Link, Switch, useHistory } from 'react-router-dom';
 import './scss/NoticeCreate.scss';
 
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import styled from 'styled-components';
+import { EditorState } from 'draft-js';
+
 
 export default function NoticeCreate({match}) {
 
@@ -20,6 +25,16 @@ export default function NoticeCreate({match}) {
     const config = {
       headers: {"Authorization": `JWT ${token}`}
     }
+
+
+      // useState로 상태관리하기 초기값은 EditorState.createEmpty()
+      // EditorState의 비어있는 ContentState 기본 구성으로 새 개체를 반환 => 이렇게 안하면 상태 값을 나중에 변경할 수 없음.
+      // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    
+      // const onEditorStateChange = (editorState) => {
+      //   // editorState에 값 설정
+      //   setEditorState(editorState);
+      // };
 
     const addImage = (e) => {
       const thumbnail = e.target.files[0]
@@ -91,6 +106,9 @@ export default function NoticeCreate({match}) {
     }
 
   return(
+
+   
+
     <div className="whole_container">
 
       <div className="title_text">공지작성</div>

@@ -7,6 +7,22 @@
 .title_text {
   font-size: 20pt;
 }
+
+.wrapper-class {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+}
+.editor {
+  height: 500px !important;
+  border: 1px solid #f1f1f1 !important;
+  padding: 5px !important;
+  border-radius: 2px !important;
+  }
+.toolbar-class {
+  height: 50px;
+  width: 100px;
+}
   
 .input_container {
     margin-top: 20px;
