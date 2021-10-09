@@ -41,19 +41,14 @@ const Header = ({ token }) => {
       <div className="header_nav-tab" onClick={menuOpen}><span className="material-icons">menu</span></div>
       <ul className="header_nav" style={menuStyle}>
         <div onClick={menuClose} className="nav-itm close">X</div>
-        <Link to="/notice" onClick={menuClose} className="nav-itm">공지</Link>
-        <Link to="/activity" onClick={menuClose} className="nav-itm">활동</Link>
-        <Link to="/recruitment" onClick={menuClose} className="nav-itm">모집</Link>
-
-        <Link to="/test" onClick={menuClose} className="nav-itm">TEST</Link>
-
+        <Link to="/notice" className="nav-itm">공지</Link>
+        <Link to="/activity" className="nav-itm">활동</Link>
+        <Link to="/recruitment" className="nav-itm">모집</Link>
         {
           token?.length > 0 ?
             <span style={{cursor: "pointer"}} onClick={logout} className="nav-itm">로그아웃</span>
           :
-            <Link to="/login" onClick={menuClose} className="nav-itm material-icons">
-            account_circle
-          </Link>
+           <Link to="/login" className="nav-itm">로그인</Link>
         }
       </ul>
     </header>

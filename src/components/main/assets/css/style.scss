@@ -1,4 +1,17 @@
 .main{
+    overflow: hidden;
     min-height: 80vh;
-    padding: 5%;
+    padding: 100px 5% 5%;
+}
+
+@media screen and (min-width: 280px) {
+    .main{
+        padding: 80px 5% 5%;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .main{
+        padding: 100px 5% 5%;
+    }
 }

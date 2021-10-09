@@ -49,7 +49,7 @@ function Firstpage({match}) {
                 prev = v.month
                 prev_year = v.year
                 arr.push(
-                    <div>
+                    <div className="project-wrapper">
 
                         <div className='line_text'>
                         <div className='line_text_div_month'></div>
@@ -61,14 +61,14 @@ function Firstpage({match}) {
                                 if (a.month == prev) {
                                     return (
                                         <div key={a.id} className='project_box'>
-                                            <Link to={`/activity/${a.id}`}>
+                                            {/* <Link to={`/activity/${a.id}`}> */}
                                                 <img className='project_box_img' src={baseurl + a.thumbnail}></img>
-                                            </Link>
+                                            {/* </Link> */}
                                             <div className='project_box_text'>
-                                                <div>
+                                                <div className="project_box_text-title">
                                                     {a.title}
                                                 </div>
-                                                <div>
+                                                <div className="project_box_text-date">
                                                     {a.year} 년 {a.month} 월
                                                 </div>
                                             </div>
@@ -91,11 +91,11 @@ function Firstpage({match}) {
 
     Aos.init()
     return (
-        <div data-aos="flip-down" >
+        <>
             <div className='main_first'>
             {data != undefined ? <Showimg></Showimg> : ''}
             </div>
-        </div>
+        </>
     );
 }
 

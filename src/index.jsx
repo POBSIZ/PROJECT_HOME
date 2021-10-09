@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { CookkiesProvider } from 'react-cookie';
 import { Link, Route, BrowserRouter } from "react-router-dom";
 
 // Components
@@ -10,7 +11,7 @@ import "./index.scss";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+      <App />
   </BrowserRouter>,
   rootElement
 );
