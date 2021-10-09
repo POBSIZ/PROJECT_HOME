@@ -9,7 +9,7 @@ function faq({ question, answer }) {
       <div className="message-row--Q">
         <span>Q</span>
         <div className="message__info">
-          <p className="message__bubble">TESTdsadhsajhg</p>
+          <p className="message__bubble">TEST dsadhds adjhsd gajfldagskfj hdsakjsajhg</p>
         </div>
       </div>
       <div className="message-row--A">

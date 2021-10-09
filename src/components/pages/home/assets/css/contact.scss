@@ -1,9 +1,18 @@
 @charset "utf-8";
 
 .home_contact {
+  position: absolute;
+  bottom: 100px;
+  right: 0px;
+  background-color: #2b2b2b;
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  align-items: center;
+  width: 260px;
+  height: 80px;
+  border-radius: 70px;
+  padding: 0px 10px;
+
   .contact__insta,
   .contact__kakao,
   .contact__email {
@@ -11,13 +20,103 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    span {
-      margin-top: 15px;
-    }
+    height: 40px;
+    margin: 15px;
   }
 }
 
-img {
-  width: 50px;
-  height: 50px;
+@media screen and (max-width: 280px) {
+  .home_contact {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    .contact__insta,
+    .contact__kakao,
+    .contact__email {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      span {
+        display: none;
+      }
+    }
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (min-width: 281px) and (max-width: 480px) {
+  .home_contact {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    .contact__insta,
+    .contact__kakao,
+    .contact__email {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      span {
+        display: none;
+      }
+    }
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 720px) {
+  .home_contact {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    .contact__insta,
+    .contact__kakao,
+    .contact__email {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      span {
+        font-size: 10px;
+      }
+    }
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (min-width: 721px) and (max-width: 1050px) {
+  .home_contact {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    .contact__insta,
+    .contact__kakao,
+    .contact__email {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+
+  img {
+    width: 50px;
+    height: 50px;
+  }
 }

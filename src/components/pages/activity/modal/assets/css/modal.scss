@@ -1,36 +1,52 @@
+@media all and (min-width:600px) {
 .modal {
     box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
-    z-index: 1;
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    background-color: white;
-
-    .modal_close{
+    background-color: rgba(0, 0, 0, 0.5) ;
+    position: fixed;
+    z-index: 110;
+    width: 80vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    .modal_div{
+        min-height: 80vh;
+        border-radius: 10px;
+        margin-top :50px;
+        background-color: white;
+        width: 100%;
         display: flex;
-        justify-content: flex-end;
-        margin-top: 5px;
-
+        justify-content: center;
+    .modal_close{
+        position: fixed;
+        right: 0;
+        width: 100%;
         .modal_close_button{
+            position: fixed;
+            right: 9%;
+            top:6%;
             background-color: white;
             border: 2px solid gray;
             border-radius: 16px;
             margin: 5px;
-            height: 30px;
-            width: 30px;
+            height: 40px;
+            width: 40px;
+            margin-bottom: 100px;
             cursor: pointer;
         }
 
     }
 
-    .modal_div{
-
-        border: 2px solid rebeccapurple;
-
+    .modal_div_des{
+        overflow : auto;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        margin: 10px;
-        margin-top : 0px;
+        margin: 20px;
         padding: 10px;
 
         .modal_div_title{
@@ -43,34 +59,33 @@
         .footer_div{
 
             padding: 10px;
-            border: 2px solid greenyellow;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             margin: 10px;
         }
 
     }
-
+}
 }
 
 .body_div{
     display: flex;
 
     .img_div{
-        border: 2px solid gold;
         height: 300px;
         width: 70%;
         margin: 5px;
         padding: 5px;
 
         .img_div_box{
+
             height: 90%;
             display: flex;
             align-items: center;
             justify-content: center;
             .img_div_img{
+                border-radius: 10px;
                 height :100%;
                 width : 100%
             }
@@ -99,7 +114,6 @@
 
     .text_div{
 
-        border: 2px solid skyblue;
 
         height: 300px;
         width: 25%;
@@ -111,4 +125,5 @@
         justify-content: center;
     }
 
+}
 }

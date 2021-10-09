@@ -9,8 +9,8 @@ import Modal from '../modal/modal'
 import Axios from 'axios';
 
 function Secondpage({match,location,history}) {
-    console.log('2번째',match)
 
+    const [detail_id,set_deatail_id] = useState()
     const [modal, setmodal] = useState(false)
 
     const id = useParams().id
@@ -34,13 +34,24 @@ function Secondpage({match,location,history}) {
                 console.log(error)
             });
     }
+    const click_img = (e,id) =>{
+        e.preventDefault();
+        set_deatail_id(id)
+        setmodal(!modal)
+    }
+
+    useEffect(()=>{
+        console.log('세컨드',detail_id)
+    },[detail_id])
+
+
 
     const Print_box = () => {
         const arr = []
         data.data.map((v) => {
             arr.push(
                 <div className='large_box'>
-                    <img onClick={() => setmodal(true)} className='img_box' src={baseurl + v.image}></img>
+                    <img onClick={(e) => click_img(e,v.id)} className='img_box' src={baseurl + v.image}></img>
                     <div className='text_box'>
                         {v.title}
                     </div>
@@ -56,8 +67,8 @@ function Secondpage({match,location,history}) {
 
     Aos.init()
     return (
-        <div data-aos="flip-up">
-            {modal == true ? <Modal setmodal={setmodal} /> : ''}
+        <div >
+            {modal == true ? <Modal setmodal={setmodal} detail_id={detail_id}/> : ''}
             {  data != undefined ?
                 <>
                     <div className='title'>

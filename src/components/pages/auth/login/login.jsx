@@ -1,22 +1,23 @@
 import React from "react";
 import { hot } from "react-hot-loader";
 import { Link, Route, BrowserRouter, useHistory } from "react-router-dom";
+import { GoogleLogin } from "react-google-login";
+import Media from "react-media";
 
 import "./assets/css/style.scss";
 
 const Login = () => {
-  
   const history = useHistory();
 
   const postLogin = async (e) => {
     e.persist();
     e.preventDefault();
 
-    const postAuth = await fetch('http://3.35.43.53/api/v1/auth/login/', {
-      method: 'POST',
-      mode: 'cors',
+    const postAuth = await fetch("http://3.35.43.53/api/v1/auth/login/", {
+      method: "POST",
+      mode: "cors",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         username: e.target.username.value,
@@ -24,14 +25,13 @@ const Login = () => {
       }),
     });
 
-    const resPost = await postAuth.json()
+    const resPost = await postAuth.json();
 
-    localStorage.setItem('access_token', resPost.access_token);
-    localStorage.setItem('refresh_token', resPost.refresh_token);
+    localStorage.setItem("access_token", resPost.access_token);
+    localStorage.setItem("refresh_token", resPost.refresh_token);
 
-    history.push('/');
+    history.push("/");
     location.reload();
-
   };
 
   //SNS 연동은 Client ID 발급 받으면 생성 예정
@@ -43,9 +43,24 @@ const Login = () => {
       </header>
 
       <form id="login-form" onSubmit={postLogin}>
-        <input required name="username" type="id" placeholder="ID를 입력해주세요" />
-        <input required name="password" type="password" placeholder="비밀번호를 입력해주세요" />
+        <input
+          required
+          name="username"
+          type="id"
+          placeholder="ID를 입력해주세요"
+        />
+        <input
+          required
+          name="password"
+          type="password"
+          placeholder="비밀번호를 입력해주세요"
+        />
         <input type="submit" value="Log In" />
+        <div id="social-login">
+          <GoogleLogin />
+          <button id="kakaoIdLogin">KaKao</button>
+          <button id="naverIdLogin">Naver</button>
+        </div>
         <div className="help-login">
           <Link to="/find">아이디/비밀번호 찾기</Link>
           <Link to="/register">회원가입</Link>
@@ -55,6 +70,6 @@ const Login = () => {
       <div></div>
     </div>
   );
-}
+};
 
 export default hot(module)(Login);

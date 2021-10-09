@@ -1,4 +1,5 @@
 import './assets/css/modal.scss';
+import './assets/css/modal_mobile.scss';
 import 'aos/dist/aos.css';
 
 import { useParams } from 'react-router-dom';
@@ -8,16 +9,21 @@ import Axios from 'axios';
 import { func } from 'prop-types';
 
 
-function Modal({ setmodal }) {
+function Modal({ setmodal , detail_id }) {
+    useEffect(()=>{
+        console.log('모달',detail_id)
+    },[detail_id])
     const id = useParams().id
     const [data , setdata] = useState()
     const baseurl = 'http://3.35.43.53/'
+
     useEffect(()=>{
-        get_modal_data()
-    },[])
+        detail_id !=undefined ?  get_modal_data() : 0
+    },[detail_id])
+
     const get_modal_data = async () => {
         console.log('실행')
-        await Axios.get(baseurl+'api/v1/activity/detail/' +id +'/', {
+        await Axios.get(baseurl+'api/v1/activity/detail/' +detail_id +'/', {
         }).then((response) => {
             console.log(response.data)
             setdata(response.data)
@@ -29,31 +35,32 @@ function Modal({ setmodal }) {
 
     Aos.init()
     return (
-        
-        <>
-            {data != undefined ? <div style={{ transform: 'translateZ(0) scale(1.2)' }} className="modal" data-aos="zoom-in">
+        <div  className="modal" >
+            {data != undefined ? 
+            
+                <div className="modal_div">
                 <div className='modal_close'>
                     <button className='modal_close_button' onClick={() => setmodal(false)}>
                         x
                             </button>
                 </div>
-                <div className='modal_div'>
+                <div className='modal_div_des'>
                     <div className="modal_div_title">
                         <span>제목입니다.</span>
                     </div>
-                    <Showimg data={data}></Showimg>
+                    <Showimg detail_id={detail_id} data={data}></Showimg>
                     <div className="closebtnbox">
                     </div>
-                    <div className='footer_div' >
-                        {data.description.replace('\r\n','<br/>')}
+                    <div className='footer_div' dangerouslySetInnerHTML={{ __html: data.description }} >
                         </div>
                 </div>
-            </div> :''}
-        </>
+                </div>
+             :''}
+        </div>
     );
 }
 
-function Showimg({data}){
+function Showimg({data,detail_id}){
     const [img_index,set_img_index] = useState(0)
     const baseurl = 'http://3.35.43.53/'
     const change_img_index = (check) => {
@@ -66,13 +73,19 @@ function Showimg({data}){
             set_img_index(img_index-1)
         }
     }
+    const Img_box = ()=>{
+        Aos.init()
+            return(
+            <div className='img_div_box'>
+                <img data-aos="fade-right" className='img_div_img' src={baseurl + data.images[img_index]}></img>
+            </div>
+            )
+    }
     Aos.init()
     return(
             <div className="body_div" >
                 <div className='img_div'>
-                    <div className='img_div_box'>
-                        <img data-aos="fade-right" className='img_div_img' src={baseurl + data.images[img_index]}></img>
-                    </div>
+                    <Img_box></Img_box>
                     <div   className='img_div_button'>
                         <button onClick={()=>change_img_index('minus')} className='img_div_arrow'>
                             왼쪽
@@ -83,6 +96,8 @@ function Showimg({data}){
                         <button onClick={()=>change_img_index('plus')} className='img_div_arrow'>
                             오른쪽
                         </button>
+                        <button className='img_div_arrow' onClick={() => window.open(baseurl+'api/v1/activity/file/'+ detail_id, '_blank')}>PDF 열기
+                        </button>
                     </div>
                 </div>
                 <div className='text_div'>
@@ -92,4 +107,4 @@ function Showimg({data}){
     )
 }
 
-export default Modal;
+export default React.memo(Modal);
