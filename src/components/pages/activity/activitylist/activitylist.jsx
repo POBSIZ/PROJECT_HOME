@@ -69,7 +69,7 @@ function Secondpage({match,location,history}) {
 
     Aos.init()
     return (
-        <div data-aos="flip-up">
+        <div >
             {modal == true ? <Modal setmodal={setmodal} detail_id={detail_id}/> : ''}
             {  data != undefined ?
                 <>

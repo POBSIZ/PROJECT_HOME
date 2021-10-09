@@ -1,10 +1,7 @@
-.home_about{
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    height: 85vh;
-
-    .home_about-logo{
+.home_about {
+  height: 85vh;
+  position: relative;
+  /*.home_about-logo{
         position: relative;
         width: 500px;
         height: 200px;
@@ -13,46 +10,91 @@
         background-size: contain;
         margin: auto;
         margin-top: 200px;
-    }
+    }*/
+  .expend_more {
+    position: absolute;
+    font-size: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-animation: 0.8s ease-in-out 0s infinite alternate move_logo;
+    animation: 0.8s ease-in-out 0s infinite alternate move_logo;
+  }
 
-    .expend_more{
-        position: absolute;
-        font-size: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        -webkit-animation: 1s ease-in-out 0s infinite alternate move_logo;
-        animation: 1s ease-in-out 0s infinite alternate move_logo;
+  .about__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .about__main__name {
+      margin-top: 50px;
+      font-size: 80px;
+      font-weight: bold;
     }
+    .about__main__desc {
+      margin-top: 10px;
+      font-size: 30px;
+      font-weight: 400;
+    }
+  }
 
+  .about__desc {
+    position: absolute;
+    bottom: 50px;
+    width: 540px;
+    height: 225px;
+    span {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    div {
+      margin: 10px 0px;
+      border-bottom: 3px;
+      border-style: solid;
+      border-image: linear-gradient(to right, #6070ff 0%, #d62839 100%);
+      border-image-slice: 1;
+    }
+    p {
+      width: 490px;
+    }
+  }
 }
 
-@-webkit-keyframes move_logo { from { top: 88vh; } to { top: 90vh; }  }
-@keyframes move_logo { from { top: 88vh; } to { top: 90vh; }  }
-
-
+@-webkit-keyframes move_logo {
+  from {
+    top: 68vh;
+  }
+  to {
+    top: 70vh;
+  }
+}
+@keyframes move_logo {
+  from {
+    top: 68vh;
+  }
+  to {
+    top: 70vh;
+  }
+}
 
 @media screen and (min-width: 280px) {
-    .home_about{
-
-        .home_about-logo{
-            width: 150px;
-        }
-
-        .expend_more{
-            font-size: 30px;
-        }
+  .home_about {
+    .home_about-logo {
+      width: 150px;
     }
+
+    .expend_more {
+      font-size: 30px;
+    }
+  }
 }
 
 @media screen and (min-width: 720px) {
-    .home_about{
-
-        .home_about-logo{
-            width: 500px;
-        }
-
-        .expend_more{
-            font-size: 50px;
-        }
+  .home_about {
+    .home_about-logo {
+      width: 500px;
     }
+
+    .expend_more {
+      font-size: 50px;
+    }
+  }
 }

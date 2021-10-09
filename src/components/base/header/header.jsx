@@ -6,32 +6,32 @@ import { Helmet } from "react-helmet";
 
 import "./assets/css/style.scss";
 
-const Header = ({token}) => {
+const Header = ({ token }) => {
   const history = useHistory();
 
   const [menuStyle, setMenuStyle] = useState({
-    top: '',
-    backgroundColor: '',
+    top: "",
+    backgroundColor: "",
   });
-  
+
   const logout = () => {
-    localStorage.clear('access_token');
-    history.push('/');
+    localStorage.clear("access_token");
+    history.push("/");
     location.reload();
-  }
-  
+  };
+
   const menuOpen = () => {
     setMenuStyle({
-      top: '0px',
-      backgroundColor: 'rgba(0, 0, 0, 0.144)',
-      opacity: '100%',
-    })
+      top: "0px",
+      backgroundColor: "rgba(0, 0, 0, 0.144)",
+      opacity: "100%",
+    });
     // console.log('open');
-  }
+  };
 
-  const menuClose = () =>{
-    setMenuStyle({top: '',})
-  }
+  const menuClose = () => {
+    setMenuStyle({ top: "" });
+  };
 
   return (
     <header className="header">
@@ -51,12 +51,13 @@ const Header = ({token}) => {
           token?.length > 0 ?
             <span style={{cursor: "pointer"}} onClick={logout} className="nav-itm">로그아웃</span>
           :
-           <Link to="/login" onClick={menuClose} className="nav-itm">로그인</Link>
+            <Link to="/login" onClick={menuClose} className="nav-itm material-icons">
+            account_circle
+          </Link>
         }
       </ul>
     </header>
   );
-  
 };
 
 export default hot(module)(Header);
