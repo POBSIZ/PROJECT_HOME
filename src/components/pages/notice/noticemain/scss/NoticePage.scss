@@ -3,6 +3,7 @@
 }
 .nHeader_container {
   display: flex;
+  margin-bottom: 20px;
 }
 
 .title_container {
@@ -39,16 +40,16 @@
     }
   }
 }
-
-
-
     
 .list_container {
   border-top:1px solid black;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   margin-top: 5px;
   justify-content:center;
+  width: 100%;
+  a{
+    width: 100%;
+  }
 }
-
-

@@ -34,22 +34,22 @@ function Firstpage({match}) {
         const arr = []
         let prev = 0
         let prev_year = 0
-        data.map((v) => {
+        data.map((v, i) => {
             if( prev_year != v.year){
                 arr.push(
-                    <div className='line_text'>
-                    <div className='line_text_div'></div>
-                    <div className='line_text_year'>
-                        {v.year}년
-                    </div> 
-                </div>
+                    <div className='line_text' key={i+"1"}>
+                        <div className='line_text_div'></div>
+                        <div className='line_text_year'>
+                            {v.year}년
+                        </div> 
+                    </div>
                 )
             }
             if (prev != v.month) {
                 prev = v.month
                 prev_year = v.year
                 arr.push(
-                    <div className="project-wrapper">
+                    <div className="project-wrapper" key={i+"2"}>
 
                         <div className='line_text'>
                         <div className='line_text_div_month'></div>
@@ -57,10 +57,10 @@ function Firstpage({match}) {
                             </div>
                         </div>
                         <div className='line_box'>
-                            {data.map((a) => {
+                            {data.map((a, ii) => {
                                 if (a.month == prev) {
                                     return (
-                                        <div key={a.id} className='project_box'>
+                                        <div key={ii+"3"} className='project_box'>
                                             {/* <Link to={`/activity/${a.id}`}> */}
                                                 <img className='project_box_img' src={baseurl + a.thumbnail}></img>
                                             {/* </Link> */}
@@ -73,7 +73,6 @@ function Firstpage({match}) {
                                                 </div>
                                             </div>
                                         </div>
-
                                     )
                                 }
                             })}

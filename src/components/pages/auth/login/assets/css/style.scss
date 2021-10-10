@@ -2,7 +2,7 @@
 
 $color--border: #dadada;
 $color--white: #fff;
-$color--green: #03c75a;
+$color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
 
 .container {
   display: flex;
@@ -45,7 +45,7 @@ $color--green: #03c75a;
     font-weight: 700;
     line-height: 49px;
     width: 100%;
-    background-color: $color--green;
+    background-image: $color--green;
     cursor: pointer;
     color: #fff;
     padding: 10px 0px;

@@ -22,7 +22,7 @@
       position: relative;
       width: fit-content;
       margin: auto;
-      top: -100px;
+      top: -130px;
 
       display: flex;
       flex-wrap: wrap;
@@ -107,7 +107,7 @@
 
   .about__desc {
     position: absolute;
-    bottom: 50px;
+    bottom: 100px;
     width: 540px;
     padding-bottom: 50px;
     span {
@@ -123,24 +123,26 @@
     }
     p {
       width: 490px;
+      font-weight: 500;
+      // font-size: 12px;
     }
   }
 }
 
 @-webkit-keyframes move_logo {
   from {
-    top: 68vh;
+    top: 79vh;
   }
   to {
-    top: 70vh;
+    top: 80vh;
   }
 }
 @keyframes move_logo {
   from {
-    top: 68vh;
+    top: 79vh;
   }
   to {
-    top: 70vh;
+    top: 80vh;
   }
 }
 
@@ -164,14 +166,13 @@
     }
 
     .about__desc {
-      bottom: 50px;
       width: 300px;
       span {
         font-size: 20px;
       }
       p {
         width: 300px;
-        font-size: 12px;
+        font-size: 18px;
       }
     }
 
@@ -182,7 +183,6 @@
 @media screen and (max-width: 800px) {
   .home_about {
     .about__desc {
-      bottom: 50px;
       width: 200px;
       span {
         font-size: 25px;
@@ -208,16 +208,14 @@
     }
 
     .about__desc {
-      bottom: 50px;
-      width: 150px;
+      width: 200px;
       span {
         font-size: 18px;
       }
       p {
-        width: 150px;
-        font-size: 10px;
+        width: 200px;
       }
     }
-    .expend_more {display: none;}
+    // .expend_more {display: none;}
   }
 }

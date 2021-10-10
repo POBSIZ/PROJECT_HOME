@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Link, Switch, useHistory } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import './scss/NoticeDetail.scss';
-
+import download_icon from './assets/download_icon.png';
 
 
 
@@ -12,17 +12,18 @@ export default function NoticeDetail({location}) {
   const [files, setFiles] = useState([]);
   const [data, setData] = useState([]);
   const [userdata, setUserData] = useState([]);
+  const [image, setImage] = useState('')
   const [cookies, setCookie] = useCookies();
 
   const history = useHistory();
   let location_data = location.state;
   let dataId = location_data.id
 
-  const thumbnail = 'http://3.35.43.53' + `${location_data.thumbnail}`
   // console.log("원래 썸네일 주소가 뭐지?", location_data.thumbnail)
   let create_date = (location_data.created_date).substring(0,10);
 
   const token = localStorage?.getItem('access_token');
+  const thumbnail = 'http://3.35.43.53' + `${location_data.thumbnail}`
   
 
   const getNoticeDetail = () => {
@@ -78,45 +79,6 @@ export default function NoticeDetail({location}) {
     // Cookies.get()
   }
 
-  const downloadFunc = () => {
-    // axios.get(`http://3.35.43.53${data.thumbnail}`, 
-    //   {
-    //     headers: { Authorization: `jwt ${token}` },
-    //     responseType: 'blob'
-    //   })
-    // .then(response => {
-    //   FileSaver.saveAs(new Blob([response.data]));
-    // });
-    const 요소 = document.createElement("a"); 
-    const 파일 = new Blob([document.getElementById('input').value],     
-               {유형: 'text/plain;charset=utf-8'}); 
-    element.href = URL.createObjectURL(파일); 
-    element.download = "myFile.txt"; 
-    document.body.appendChild(요소); 
-    
-    element.click(); 
-  }
-
-  const downloadTest = () => {
-    const url = "http://3.35.43.53/api/v1/board/file/1";
-
-    axios.get(url, {
-      headers: { responseType: 'application/blob' }
-    })
-    .then((res) => {
-      console.log("파일데이터 다운받기....", )
-      const downloadUrl = window.URL.createObjectURL(new Blob([res.data]));
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.setAttribute('download', 'file.pdf'); //or any other extension
-      document.body.appendChild(link);
-      link.click();
-    })
-    .catch(function(error) {
-      console.log("다운로드 실패");
-    })
-  }
-  
 
   const deleteFunc = () => {
     if (confirm('정말 삭제하시겠습니까?')) {
@@ -140,66 +102,70 @@ export default function NoticeDetail({location}) {
     }
   }
 
+ 
   useEffect(()=> {
     getNoticeDetail();
     getUserData();
-    //getCookieValue();
 
   }, [])
 
 
 
   return(
-    <div className="nDetail_container">
+    <div className="detail_container">
 
-      <div className="listBack_container">
-        <div>𝄘</div>
-        <Link to="/notice" className="nav-itm">목록</Link>
+      <div className="de_title_container">
+        <div className="title_text">{data.title}</div>
       </div>
 
-      <div className="modifyContainer">
+      <div className="de_text_container">
+          <div className="text_box">
+            <div className="little_text">작성자 {data.creator}</div>
+            <div className="little_text">작성일 {create_date}</div>
+          </div>
 
-        <div className="hits_box">
-
-          <span className="hits_text">{data.hits}</span>
-        </div>
-
+          <div className="de_hits_box">
+            <div className="de_hits_text">조회수: {data.hits}</div> 
+          </div>
+      </div>
+          
+      <div className="de_delete_container">
         { userdata.is_superuser == true ? 
-          <div className="button_box">
+          <div className="de_button_box">
             {/* <button>수정</button> */}
-            <button onClick={()=>deleteFunc()}>삭제</button>
+            <button className="button_delete" onClick={()=>deleteFunc()}>삭제</button>
+            <Link to="/notice" className="button_list">목록</Link>
           </div>
         :
           <div></div>
         }
       </div>
-        
-
-      <div className="contentContainer">
-        <div className="imageContainer">
-          <img src={thumbnail }/>
+      
+      { location_data.thumbnail == "/media/undefined" ?
+        <div></div> 
+      :
+        <div className="de_image_container">
+          <img className="imege_style" src={ thumbnail }/>
         </div>
+      }  
 
-        <div className="textContainer">
-          <h1>{data.title}</h1>
-
-          <div>작성자 {data.creator}</div>
-          <div>작성일 {create_date}</div>
-          
-          <div>{data.content}</div>
-          <div>
-            {files.map((c, i)=> {
-              return(
-                <div>
-                  <div key={i}>파일 {c.filename}</div> 
-                    <a href="http://3.35.43.53/api/v1/board/file/1">다운로드</a>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
+      <div className="de_content_container">
+        <div>{data.content}</div>
       </div>
+      
+        {
+          files.map((c, i)=> {
+            const fileLink = `http://3.35.43.53/api/v1/board/file/${c.id}` 
+            return(
+              <div className="de_file_container">
+                <a href={fileLink}>
+                  <img src={download_icon}/>
+                </a>
+                <div className="file_name" key={i}>{c.filename}</div> 
+              </div>
+            )
+          })
+        }
       
     </div>
   );

@@ -3,10 +3,37 @@
     padding: 0 5%;
     box-shadow: 0 0 10px rgba(70, 70, 70, 0.3);
 
-    .footer-copyright{
-        text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .footer-logo{
+        font-weight: bold;
+        font-size: 35px;
         line-height: 150px;
-        font-size: 30px;
-        font-weight: lighter;
     }
+
+    .footer-mid{
+        display: flex;
+        flex-flow: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        .footer-copyright{}
+        .footer-address{
+            margin-top: 10px;
+        }
+
+    }
+
+    .footer-link{
+        a{
+            font-size: 35px;
+            line-height: 150px;
+            padding: 0 10px;
+            color: #000;
+        }
+    }
+
 }

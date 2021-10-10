@@ -21,8 +21,15 @@ import NoticeCreate from '../pages/notice/create/NoticeCreate';
 
 import Test from "../pages/test/test";
 
+import MbtiResult from "../pages/deti/mbtiResult";
+import MbtiHome from "../pages/deti/mbtiHome";
+import Mbti from "../pages/deti/mbti";
+import Preq from "../pages/deti/preq";
+
+
 
 const Main = () => {
+  const token = localStorage?.getItem('access_token');
   return (
     <main className="main">
       <Switch>
@@ -38,6 +45,11 @@ const Main = () => {
         <Route path="/notice/:id" component={NoticeDetail} />
 
         <Route exact path="/test" component={Test} />
+
+        <Route exact path="/mbti" component={MbtiHome} />
+        <Route exact path="/mbti/preq" component={Preq} />
+        <Route exact path="/mbti/question" component={Mbti} />
+        <Route exact path="/mbti/result" component={MbtiResult} />
 
       </Switch>
     </main>             

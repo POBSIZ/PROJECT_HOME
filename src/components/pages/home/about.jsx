@@ -16,17 +16,18 @@ const About = () => {
     <section className="home_about">
 
       <div className="about__main">
+
+        <div className="circle-wrapper">
+          <img src={circle} className="circle" />
+          <img src={circle} className="circle" />
+          <img src={circle} className="circle" />
+          <img src={circle} className="circle" />
+          <img src={circle} className="circle" />
+        </div>
+
         <div className="about__main-logo">
           <span className="logo-name">PROJECT</span>
           <span className="logo-desc">부산 연합 소프트웨어 동아리</span>
-        </div>
-
-        <div className="circle-wrapper">
-          <img src={circle} className="circle"/>
-          <img src={circle} className="circle"/>
-          <img src={circle} className="circle"/>
-          <img src={circle} className="circle"/>
-          <img src={circle} className="circle"/>
         </div>
 
       </div>
@@ -35,19 +36,17 @@ const About = () => {
         className="home_about-logo"
         style={{ backgroundImage: `url(${Logo})` }}
       ></div>*/}
-      <div className="about__desc">
+      {/* <div className="about__desc">
         <span>프로젝트 동아리 홈페이지</span>
         <div></div>
         <p>
-          인간은 듣기만 구하기 붙잡아 위하여 이것이다. 얼마나 것이다.
-          보라, 있으며, 인간에 기쁘며, 이상 무엇을 행복스럽고 약동하다.
-          많이 싹이 얼음이 유소년에게서 살 것은 주는 능히 피다.
-          우는 하는 품고 커다란 품으며, 있는가?
-          풀이 청춘에서만 대고, 황금시대를 운다.
-          있는 꾸며 뜨거운지라, 청춘의 쓸쓸하랴?
-          너의 미인을 노년에게서 바이며, 같이, 속잎나고, 그리하였는가?
+          부산 연합 소프트웨어 동아리 [PROJECT] 홈페이지에 오신것을
+          환영합니다! IT에 관심많은 부산 청년들이 만들어낸 다양한
+          결과물을 [PROJECT] 홈페이지에서 즐기세요. 
+          부산 대표 IT 네트워크 인프라를 구축하기 위해
+          [PROEJCT]는 움직입니다.
         </p>
-      </div>
+      </div> */}
       {/* <Contact></Contact> */}
       <span className="material-icons expend_more">expand_more</span>
     </section>

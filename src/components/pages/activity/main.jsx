@@ -9,28 +9,28 @@ function App({ match, history }) {
 
     // 'http://172.30.1.18:8000/api/v1/activity/detail/' + id
     return (
-        <div>
+        <>
             <div className='main_title'>
                 활동✍
             </div>
             <div className='main_sub_title'>
-            <div className='main_title_sub'>
-                PROJECT의 활동
+                <div className='main_title_sub'>
+                    PROJECT의 활동
+                </div>
+                <div className='main_title_sub'>
+                    다양한 기록
+                </div>
             </div>
-            <div className='main_title_sub'>
-                다양한 기록
-            </div>
-            </div>
-                <React.Fragment>
-                    <Route exact path={match.path} component={Fristpage} >
-                        <Fristpage match={match} history={history} />
-                    </Route>
-                    <Route path={`${match.path}/:id`} render={({match,history,location})=>(
-                        <Secondpage location={location} history={history} match={match} />
-                        )}>
-                    </Route>
-                </React.Fragment>
-        </div>
+            <React.Fragment>
+                <Route exact path={match.path} component={Fristpage} >
+                    <Fristpage match={match} history={history} />
+                </Route>
+                <Route path={`${match.path}/:id`} render={({ match, history, location }) => (
+                    <Secondpage location={location} history={history} match={match} />
+                )}>
+                </Route>
+            </React.Fragment>
+        </>
     );
 
 }
