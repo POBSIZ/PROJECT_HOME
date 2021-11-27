@@ -8,31 +8,37 @@
   font-size: 20pt;
 }
 
-.wrapper-class {
-  width: 50%;
+.wrapper-class{
+  width: '100%';
   margin: 0 auto;
   margin-bottom: 4rem;
 }
 .editor {
-  height: 500px !important;
+  height: 700px !important;
   border: 1px solid #f1f1f1 !important;
   padding: 5px !important;
   border-radius: 2px !important;
-  }
-.toolbar-class {
-  height: 50px;
-  width: 100px;
+}
+
+input:focus {
+  outline:none;
+  border-bottom: 1px solid blue;
 }
   
 .input_container {
     margin-top: 20px;
     width: 60%;
+    display: flex;
+    flex-direction: column;
 
     .title_input {
         width: 100%;
         padding:10px;
         height: 70px;
+        margin-bottom: 30px;
         font-size: 17pt;
+        border: none;
+        border-bottom: 1px solid grey;
     }
     .Content_input {
         width: 100%;
