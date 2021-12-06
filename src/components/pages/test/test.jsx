@@ -1,48 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { hot } from "react-hot-loader";
 import "./test.scss";
 
+import { useSelector, useDispatch } from 'react-redux';
+import Actions from "../../../redux/actions";
+
 const Test = () => {
-    const token = localStorage?.getItem('access_token');
-
-    const testAPI = () => {
-        const url = "http://3.35.43.53/api/v1/reservations/2021-12-28";
-        axios.get(url)
-            .then((res) => {
-                console.log(res)
-            })
-            .catch(function (err) {
-                console.log(err);
-            })
-    }
-
-    const postAPI = async () => {
-        const postDate = await fetch('http://3.35.43.53/api/v1/reservations/2021-12-28', {
-            method: "POST",
-            mode: 'cors',
-            headers:{
-                Authorization: `jwt ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(
-                {
-                    title: 'TEST',
-                    description: 'TEST DESCRIPTION',
-                    start_time: '12:12:12',
-                    end_time: '14:20:10',
-                    floor: '1'
-                }
-            )
-        })
-        const getDate = await postDate.json();
-        console.log(getDate);
-    }
+    const dispatch = useDispatch();
+    const count = useSelector(store=>store.test)
 
     return (
         <>
-            <button className="TEST-BTN" onClick={postAPI}>Click Me</button>
-            <pre className="TEST-RES"></pre>
+            <h1>{count.value}</h1>
+            <button onClick={()=>dispatch(Actions.test.increment(count.value))}>+1</button>
+            <button onClick={()=>dispatch(Actions.test.decrement(count.value))}>-1</button>
         </>
     );
 }

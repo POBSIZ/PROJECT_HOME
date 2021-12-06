@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Route, Link, Switch, useHistory } from 'react-router-dom';
+import { Route, Link, Routes, useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import './scss/NoticeDetail.scss';
 import download_icon from './assets/download_icon.png';
@@ -15,7 +15,7 @@ export default function NoticeDetail({location}) {
   const [image, setImage] = useState('')
   const [cookies, setCookie] = useCookies();
 
-  const history = useHistory();
+  const navigate = useNavigate();
   let location_data = location.state;
   let dataId = location_data.id
 
@@ -94,7 +94,7 @@ export default function NoticeDetail({location}) {
         }})
       .catch((err) => {console.log("삭제 실패")})
 
-      history.push('/notice'); 
+      navigate('/notice'); 
       location.reload();
       
     } else {

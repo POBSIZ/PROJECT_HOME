@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
-import { Link } from "react-router-dom";
+import { Link, useLocation  } from "react-router-dom";
 import "./assets/css/style.scss";
 
 import questions from "./question";
 
-const MBTI = ({location, history}) => {
+const MBTI = () => {
+
+    const location = useLocation();
 
     console.log(location)
 

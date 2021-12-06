@@ -1,3 +1,5 @@
+@import './vars';
+
 @font-face {
     font-family: 'GmarketSans';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -29,6 +31,10 @@
     box-sizing: border-box;
 }
 
+html{
+    font-size: 10px !important;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -45,8 +51,8 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
+	// font-size: 100%;
+	// font: inherit;
 	vertical-align: baseline;
     text-decoration: none;
     font-family: 'GmarketSans';
@@ -58,7 +64,9 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
+	// line-height: 1;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 ol, ul {
 	list-style: none;
@@ -79,6 +87,10 @@ table {
 .line{
     position: relative;
     border: none;
+}
+
+input{
+    margin: 0;
 }
 
 .material-icons {
@@ -104,4 +116,12 @@ table {
 
     /* Support for IE. */
     font-feature-settings: 'liga';
+}
+
+.emoji{
+    font-weight: 500 !important;
+}
+
+input:disabled{
+    cursor: not-allowed;
 }

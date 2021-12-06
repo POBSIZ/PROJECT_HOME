@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { hot } from "react-hot-loader";
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Routes, useLocation } from 'react-router-dom';
 import './scss/NoticePage.scss';
 import axios from 'axios';
 import speaker from '../noticemain/assets/speaker.png';
@@ -8,7 +8,11 @@ import speaker from '../noticemain/assets/speaker.png';
 import NoticeBox from './components/NoticeBox';
 import NoticeCreate from '../create/NoticeCreate';
 
-function NoticePage({match}) {
+const reqUrl = "http://3.35.43.53";
+
+function NoticePage() {
+
+  const match = useLocation();
 
   const token = localStorage?.getItem('access_token');
 
@@ -17,7 +21,7 @@ function NoticePage({match}) {
 
 
   const getNoticeAPI = () => {
-    const url = "http://3.35.43.53/api/v1/board/1";
+    const url = `${reqUrl}/api/v1/board/1`;
 
     axios.get(url)
     .then((res) => {
@@ -30,7 +34,7 @@ function NoticePage({match}) {
   }
 
   const getUserData = () => {
-    axios.get('http://3.35.43.53/api/v1/users/me',  {
+    axios.get(`${reqUrl}/api/v1/users/me/`,  {
       headers:{
         Authorization: `jwt ${token}`,
         'Content-Type': 'application/json'
@@ -55,16 +59,14 @@ function NoticePage({match}) {
     <div className="total_container">
       <div className="nHeader_container">
         <div className="title_container">
-          <h1>공지 📢</h1>
+          <h1>공지 <span className='emoji'>📢</span></h1>
           <div>PROJECT 공지입니다.</div>
         </div>
 
         <div className="add_text">
           { userdata.is_superuser == true ? 
-            <span><Link to={`${match.url}/create`}>추가</Link></span>
-          :
-            <div></div>
-          }
+            <span><Link to={`${match.pathname}/create`}>추가</Link></span>
+          :null}
         </div>
       </div >
 
@@ -74,9 +76,9 @@ function NoticePage({match}) {
         })}
       </div>
 
-      <Switch>
-        <Route path={`${match.url}/create`} component={NoticeCreate} />
-      </Switch>
+      <Routes>
+        <Route path={`${match.pathname}/create`} elements={<NoticeCreate/>} />
+      </Routes>
     
     </div>
   );

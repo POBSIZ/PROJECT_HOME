@@ -7,10 +7,11 @@ import Axios from 'axios';
 import Aos from 'aos';
 import React , { useState, useEffect } from 'react'
 
+const reqUrl = "http://3.35.43.53";
 
 function Firstpage({match}) {
     console.log(match)
-    const baseurl = 'http://3.35.43.53/'
+    const baseurl = `${reqUrl}/`
     const [data, setdata] = useState()
 
     useEffect(() => {

@@ -10,7 +10,7 @@ const Footer = () => {
         <footer className="footer">
             <h3 className="footer-logo">PROJECT</h3>
             <div className="footer-mid">
-                <div className="footer-copyright">@Copyright 2021 PROJECT All rights reserved</div>
+                <div className="footer-copyright">©Copyright 2021 PROJECT All rights reserved</div>
                 <div className="footer-address">부산광역시 남구 전포대로 39-2</div>
             </div>
             <div className="footer-link">

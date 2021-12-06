@@ -1,0 +1,100 @@
+@import '../../../../../vars';
+
+.surveyCreate{
+    text-align: center;
+
+    .itm-delete{
+        cursor: pointer;
+        background-color: $base-red;
+        border: none;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        margin: 0 10px;
+    }
+
+    .surveyCreate_head{
+        margin: 20px 0;
+        div{
+            margin: 20px 0;
+        }
+    }
+
+    .surveyCreate_list{
+        .list_itm{
+            margin: 50px 0;
+            background-color: bisque;
+            padding: 20px;
+
+            .list_itm-head{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+            .sub-wrapper{
+                margin: 20px;
+
+                .itm-sub{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 10px 0;
+
+                    .sub-title{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0 10px;
+                        p{
+                            margin-right: 10px;
+                        }
+                    }
+                }
+
+            }
+            .sub_btn-wrapper{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 50%;
+                margin: auto;
+                // flex-flow: column;
+                .sub_btn-create{
+                    cursor: pointer;
+                    display: block;
+                    height: 40px;
+                    width: 150px;
+                    margin: 10px;
+                    background-color: $base-black;
+                    color: #fff;
+                    font-size: 16px;
+                }
+            }
+        }
+        
+        .surveyCreate_list-add{
+            cursor: pointer;
+            width: 4rem;
+            height: 4rem;
+            margin: auto;
+            border-radius: 100%;
+            background-color: $base-blue;
+            color: #fff;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .surveyCreate-submit{
+        margin: 50px;
+    }
+}

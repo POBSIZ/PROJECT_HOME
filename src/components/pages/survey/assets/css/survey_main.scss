@@ -1,0 +1,14 @@
+.survey_main{
+    height: 70vh;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-flow: column;
+    h1{
+        font-size: 3rem;
+    }
+    p{
+        font-size: 1.8rem;
+    }
+}

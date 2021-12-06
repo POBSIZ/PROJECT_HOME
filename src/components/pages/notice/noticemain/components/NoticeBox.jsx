@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { hot } from "react-hot-loader";
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import '../scss/NoticeBox.scss'
 import NoticeDetail from '../../detail/NoticeDetail';
 
@@ -21,7 +21,7 @@ export default function NoticeBox({content, match}) {
       setImage(default_img)
       
     } else {
-      setImage('http://3.35.43.53' + `${content.thumbnail}`)
+      setImage('http://3.35.43.53/' + `${content.thumbnail}`)
     }
   }
 
@@ -31,7 +31,10 @@ export default function NoticeBox({content, match}) {
 
 
   return(
-    <Link to={{ pathname: `${match.url}/${content.id}`, state: content }}>
+    <Link to={{ 
+      pathname: `${match.pathname}/${content.id}`, 
+      state: {content} 
+    }}>
       <div className="noticeBox_container">
         
         <div className="image_container">
@@ -51,9 +54,9 @@ export default function NoticeBox({content, match}) {
         </div>
  
     
-        <Switch>
-          <Route path={`${match.url}/:id`} component={NoticeDetail}/>
-        </Switch>
+        <Routes>
+          <Route path={`${match.url}/:id`} elements={<NoticeDetail/>}/>
+        </Routes>
     </div>
     </Link>
   );

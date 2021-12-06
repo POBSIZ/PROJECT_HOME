@@ -1,40 +1,44 @@
 import React from "react";
 import { hot } from "react-hot-loader";
-import { Link, Route, BrowserRouter, useHistory } from "react-router-dom";
+import { Link, Route, Routes, useNavigate, useParams, useLocation } from 'react-router-dom';
+
 import { GoogleLogin } from "react-google-login";
-import Media from "react-media";
+
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import Actions from "../../../../redux/actions";
 
 import "./assets/css/style.scss";
 
+
 const Login = () => {
-  const history = useHistory();
+
+  const dispatch = useDispatch();
+  const auth = useSelector(store => store.auth)
+
+  const navigate = useNavigate();
 
   const postLogin = async (e) => {
     e.persist();
     e.preventDefault();
+    try{
+      const postAuth = await axios({
+        method: 'POST',
+        url: "v1/auth/login/",
+        mode: 'cors',
+        data: {
+          username: e.target.username.value,
+          password: e.target.password.value,
+        }
+      });
+      await dispatch(Actions.auth.login(postAuth.data.access_token))
+      navigate(-1);
+    }catch(err){
+      console.log(err);
+    }
 
-    const postAuth = await fetch("http://3.35.43.53/api/v1/auth/login/", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: e.target.username.value,
-        password: e.target.password.value,
-      }),
-    });
-
-    const resPost = await postAuth.json();
-
-    localStorage.setItem("access_token", resPost.access_token);
-    localStorage.setItem("refresh_token", resPost.refresh_token);
-
-    history.push("/");
-    location.reload();
   };
 
-  //SNS 연동은 Client ID 발급 받으면 생성 예정
   return (
     <div className="container">
       <header className="welcom-header">
@@ -55,19 +59,11 @@ const Login = () => {
           type="password"
           placeholder="비밀번호를 입력해주세요"
         />
-        <input type="submit" value="Log In" />
-        {/* <div id="social-login">
-          <GoogleLogin />
-          <button id="kakaoIdLogin">KaKao</button>
-          <button id="naverIdLogin">Naver</button>
-        </div> */}
+        <input type="submit" value="로그인" />
         <div className="help-login">
-          {/* <Link to="/find">아이디/비밀번호 찾기</Link> */}
           <Link to="/register">회원가입</Link>
         </div>
       </form>
-
-      <div></div>
     </div>
   );
 };

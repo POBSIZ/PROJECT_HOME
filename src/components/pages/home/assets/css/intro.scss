@@ -9,29 +9,63 @@
         h1 {
             font-size: 60px;
             font-weight: bold;
+            span{
+                font-weight: 500;
+            }
         }
         p{
             text-align: center;
             display: block;
             width: 35%;
-            font-size: 16px;
+            font-size: 14px;
             margin-top: 25px;
             font-weight: 500;
         }
     }
 
-
     .infoSection{
-        &.info-count{
-            margin-top: 100px;
+        margin-top: 100px;
+        .info-count{
+            height: calc(80vh * 3);
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 80vh;
             .info_right{
                 text-align: right;
+                margin-right: 40px;
+                .count-itm{
+                    margin-top: 20px;
+                    &:first-child{margin-top: 0px;}
+                    span{
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+                    h3{
+                        margin-top: 10px;
+                        font-size: 40px;
+                        font-weight: 500;
+
+                    }
+                }
             }
             .info_left{
                 text-align: left;
+                margin-left: 40px;
+                .count-itm{
+                    margin-top: 20px;
+                    &:first-child{margin-top: 0px;}
+                    span{
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+                    h3{
+                        margin-top: 10px;
+                        font-size: 40px;
+                        font-weight: 500;
+    
+                    }
+                }
             }
         }
         
@@ -39,20 +73,21 @@
             display: flex;
             flex-flow: column;
             align-items: center;
-            *{background: #6070FF;}
-            .elipse{
-                width: 10px;
-                height: 10px;
-                border-radius: 100%;
-                // background-image: linear-gradient(to bottom, #6070ff 0%, #d62839 100%);
-            }
-            .line-main{
-                height: 80vh;
-                width: 4px;
-                // background-image: linear-gradient(to bottom, #6070ff 0%, #d62839 100%);
-            }
+            width: 8px;
+            // background-image: linear-gradient(to bottom, #6070ff 0%, #d62839 100%);
         }
 
     }
 
+}
+
+
+.center-line{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 8px;
+    height: calc(80vh * 3);
+    background-image: linear-gradient(to bottom, #6070ff 0%, #d62839 100%);
 }
