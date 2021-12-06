@@ -26,14 +26,16 @@ function Secondpage({match,location,history}) {
 
     const getproject = async () => {
         await Axios.get(baseurl+ "api/v1/activity/" + id + '/', {
-        }).then((response) => {
+        })
+        .then((response) => {
             console.log(response.data)
             setdata(response.data)
         })
-            .catch((error) => {
-                console.log(error)
-            });
+        .catch((error) => {
+            console.log(error)
+        });
     }
+    
     const click_img = (e,id) =>{
         e.preventDefault();
         set_deatail_id(id)
@@ -48,9 +50,9 @@ function Secondpage({match,location,history}) {
 
     const Print_box = () => {
         const arr = []
-        data.data.map((v) => {
+        data.data.map((v, i) => {
             arr.push(
-                <div className='large_box'>
+                <div className='large_box' key={i}>
                     <img onClick={(e) => click_img(e,v.id)} className='img_box' src={baseurl + v.image}></img>
                     <div className='text_box'>
                         {v.title}

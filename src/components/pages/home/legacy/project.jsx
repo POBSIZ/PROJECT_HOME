@@ -18,7 +18,7 @@ const Project = () => {
             <h1 className="home_project-title">활동</h1>
             <ul className="project_list">
 
-                {[...Array(9)].map((itm, i)=>{
+                {[...Array(3)].map((itm, i)=>{
                     return(
                         <li className="project_list-itm" key={i}>
                             <div className="itm-img" style={{backgroundImage: `url(${listImage})`,}}></div>
@@ -34,7 +34,7 @@ const Project = () => {
                 })}
 
             </ul>
-            <Link to="" className="move-project">더보기</Link>
+            <Link to="/activity" className="move-project">더보기</Link>
         </section>
     );
 }

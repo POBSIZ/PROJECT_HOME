@@ -7,10 +7,11 @@ import Axios from 'axios';
 import Aos from 'aos';
 import React , { useState, useEffect } from 'react'
 
+const reqUrl = "http://3.35.43.53";
 
 function Firstpage({match}) {
     console.log(match)
-    const baseurl = 'http://3.35.43.53/'
+    const baseurl = `${reqUrl}/`
     const [data, setdata] = useState()
 
     useEffect(() => {
@@ -34,22 +35,22 @@ function Firstpage({match}) {
         const arr = []
         let prev = 0
         let prev_year = 0
-        data.map((v) => {
+        data.map((v, i) => {
             if( prev_year != v.year){
                 arr.push(
-                    <div className='line_text'>
-                    <div className='line_text_div'></div>
-                    <div className='line_text_year'>
-                        {v.year}년
-                    </div> 
-                </div>
+                    <div className='line_text' key={i+"1"}>
+                        <div className='line_text_div'></div>
+                        <div className='line_text_year'>
+                            {v.year}년
+                        </div> 
+                    </div>
                 )
             }
             if (prev != v.month) {
                 prev = v.month
                 prev_year = v.year
                 arr.push(
-                    <>
+                    <div className="project-wrapper" key={i+"2"}>
 
                         <div className='line_text'>
                         <div className='line_text_div_month'></div>
@@ -57,28 +58,27 @@ function Firstpage({match}) {
                             </div>
                         </div>
                         <div className='line_box'>
-                            {data.map((a) => {
+                            {data.map((a, ii) => {
                                 if (a.month == prev) {
                                     return (
-                                        <div key={a.id} className='project_box'>
-                                            <Link to={`/activity/${a.id}`}>
+                                        <div key={ii+"3"} className='project_box'>
+                                            {/* <Link to={`/activity/${a.id}`}> */}
                                                 <img className='project_box_img' src={baseurl + a.thumbnail}></img>
-                                            </Link>
+                                            {/* </Link> */}
                                             <div className='project_box_text'>
-                                                <div>
+                                                <div className="project_box_text-title">
                                                     {a.title}
                                                 </div>
-                                                <div>
+                                                <div className="project_box_text-date">
                                                     {a.year} 년 {a.month} 월
                                                 </div>
                                             </div>
                                         </div>
-
                                     )
                                 }
                             })}
                         </div>
-                    </>
+                    </div>
                 )
             }
         })
@@ -91,11 +91,11 @@ function Firstpage({match}) {
 
     Aos.init()
     return (
-        <div data-aos="flip-down" >
+        <>
             <div className='main_first'>
             {data != undefined ? <Showimg></Showimg> : ''}
             </div>
-        </div>
+        </>
     );
 }
 

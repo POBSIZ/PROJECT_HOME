@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Route, Link, Switch, useHistory } from 'react-router-dom';
+import { Route, Link, Routes, useNavigate } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import './scss/NoticeDetail.scss';
 import download_icon from './assets/download_icon.png';
@@ -15,10 +15,11 @@ export default function NoticeDetail({location}) {
   const [image, setImage] = useState('')
   const [cookies, setCookie] = useCookies();
 
-  const history = useHistory();
+  const navigate = useNavigate();
   let location_data = location.state;
   let dataId = location_data.id
 
+  // console.log("원래 썸네일 주소가 뭐지?", location_data.thumbnail)
   let create_date = (location_data.created_date).substring(0,10);
 
   const token = localStorage?.getItem('access_token');
@@ -31,11 +32,11 @@ export default function NoticeDetail({location}) {
     .then((res) => {
       setData(res.data);
       setFiles(res.data.postfile)
-      console.log("새로받은 데이터", res.data)
-      console.log("파일 데이터", res.data.postfile)
+      // console.log("새로받은 데이터", res.data)
+      // console.log("파일 데이터", res.data.postfile)
     })
     .catch(function(error) {
-        console.log("실패");
+        console.log(error);
     })
   }
 
@@ -49,10 +50,10 @@ export default function NoticeDetail({location}) {
     })
     .then((res) => {
       setUserData(res.data);
-      console.log("유저 데이터", res.data)
+      // console.log("유저 데이터", res.data)
     })
     .catch(function(error) {
-        console.log("유저데이터실패");
+        console.log(error);
     })
   }
 
@@ -93,7 +94,7 @@ export default function NoticeDetail({location}) {
         }})
       .catch((err) => {console.log("삭제 실패")})
 
-      history.push('/notice'); 
+      navigate('/notice'); 
       location.reload();
       
     } else {
