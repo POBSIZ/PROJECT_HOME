@@ -36,22 +36,22 @@ function NavTab () {
     };
 
     const navClose = () => {
-        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-        let navWidth = '';
-        let navBgWidth = ''
-        if (vw < 1000){
-            navWidth = '100%';
-            navBgWidth = '-100%';
-        }else{
-            navWidth = '100%';
-            navBgWidth = '-100%';
-        }
+        // const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+        // let navWidth = '';
+        // let navBgWidth = ''
+        // if (vw < 1000){
+        //     navWidth = '100%';
+        //     navBgWidth = '-100%';
+        // }else{
+        //     navWidth = '100%';
+        //     navBgWidth = '-100%';
+        // }
         setNavStyle({
-            transform: `translateX(${navWidth})`,
+            transform: `translateX(100%)`,
             opacity: '0',
         });
         setNavBgStyle({
-            transform: `translateX(${navBgWidth})`,
+            transform: `translateX(-100%)`,
             opacity: '100%',
         });
         setTimeout(() => {
@@ -59,7 +59,7 @@ function NavTab () {
                 transform: `translateX(-300%)`,
                 opacity: '0',
             })
-        }, 300);
+        }, 400);
     }
 
     async function logout () {

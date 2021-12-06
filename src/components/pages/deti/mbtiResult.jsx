@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
 import { Link } from "react-router-dom";
 
+import { useSelector, useDispatch } from 'react-redux';
+import Actions from "../../../redux/actions";
+
 import "./assets/css/result.scss";
 
 // WAVE
@@ -36,7 +39,10 @@ import resultSet from "./resultSet";
 
 const MbtiResult = ({ location }) => {
 
-    const [scoreState, setScoreState] = useState(location.state.scoreValue);
+    const storeDETI = useSelector(store=>store.deti);
+    const dispatch = useDispatch()
+
+    const [scoreState, setScoreState] = useState(storeDETI.scoreValue);
     const [resultState, setResultState] = useState(
         () => {
             const ire = scoreState?.sort(function (a, b) { return b.score - a.score; })
@@ -50,8 +56,6 @@ const MbtiResult = ({ location }) => {
             top: 0,
         });
     }, [])
-
-    console.log(scoreState);
 
     const renderResult = () => {
         let bgSrc = "";
@@ -126,7 +130,7 @@ const MbtiResult = ({ location }) => {
 
                     <ul className="result_main-need">
                         <hr style={{ backgroundColor: colorSrc }} />
-                        <h1>직무 요구 조건📑</h1>
+                        <h1>직무 요구 조건<span className='emoji'>📑</span></h1>
                         {
                             resultText.need.map((item, l) => {
                                 return (

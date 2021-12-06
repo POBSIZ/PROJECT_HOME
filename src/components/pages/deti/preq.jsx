@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useNavigate } from "react-router-dom";
+
+import { useSelector, useDispatch } from 'react-redux';
+import Actions from "../../../redux/actions";
 
 import "./assets/css/preq.scss";
 
 import MBTI from "./mbti";
 
 const PreQuestion = () => {
+
+    const dispatch = useDispatch();
+
+    const navigate = useNavigate();
 
     const [q3Type, setQ3Type] = useState();
     const [q2Type, setQ2Type] = useState("디자인");
@@ -44,7 +51,16 @@ const PreQuestion = () => {
         ):(
             setQ3Condition(false)
         )
-        
+    }
+
+    const postData = () => {
+        const data = {
+            q3Value: q3Type,
+            q2Value: q2Type,
+            q1Value: q1Type,
+        }
+        dispatch(Actions.deti.preq(data));
+        navigate('/mbti/question');
     }
 
     return (
@@ -160,17 +176,7 @@ const PreQuestion = () => {
                 </div>
             </section>
 
-            <Link
-                to={{
-                    pathname: '/mbti/question',
-                    state: {
-                        q3Value: q3Type,
-                        q2Value: q2Type,
-                        q1Value: q1Type,
-                    },
-                }}
-                className="start"
-            >검사 시작하기!</Link>
+            <div onClick={postData} className="start" >검사 시작하기!</div>
         
             {/* <h1 className="delete">강민지 존예!!!!!</h1> */}
             {/* <h1 className="delete">김난영 존예!!!!!</h1> */}

@@ -18,14 +18,18 @@ import Actions from "../../redux/actions";
 
 
 const App = () => {
-  
-  const store = useSelector(store=>store);
+
+  const store = useSelector(store => store);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-    return()=>{}
-  },[])
-  
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+    // return () => { }
+  }, [])
+
 
   return (
     <>

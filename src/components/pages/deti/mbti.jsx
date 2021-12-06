@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
-import { Link, useLocation  } from "react-router-dom";
+import { Link, useLocation, useNavigate  } from "react-router-dom";
 import "./assets/css/style.scss";
+
+import { useSelector, useDispatch } from 'react-redux';
+import Actions from "../../../redux/actions";
 
 import questions from "./question";
 
 const MBTI = () => {
 
     const location = useLocation();
+    const navigate = useNavigate();
 
-    console.log(location)
+    const dispatch = useDispatch();
+    const storeDETI = useSelector(store=>store.deti);
 
     useEffect(()=>{
         window.scrollTo({
@@ -94,8 +99,7 @@ const MBTI = () => {
 
         });
 
-        console.log(location.state.q3Value)
-        switch (location.state.q3Value) {
+        switch (storeDETI.preq.q3Value) {
             case '웹앱':
                 front += 7.0;
                 back += 6.0;
@@ -126,9 +130,7 @@ const MBTI = () => {
                 break;
         }
 
-
-        console.log(location.state.q2Value)
-        switch (location.state.q2Value) {
+        switch (storeDETI.preq.q2Value) {
             case 'C':
                 iot += 3.0; 
                 what += 6.0;
@@ -205,27 +207,25 @@ const MBTI = () => {
 
         setTotalScore(exScore);
         
-        console.log(
-            `front: ${front/sz[0]}\n`,
-            `back: ${back/sz[1]}\n`,
-            `desk: ${desk/sz[2]}\n`,
-            `mobile: ${mobile/sz[3]}\n`,
-            `model: ${model/sz[4]}\n`,
-            `uiux: ${uiux/sz[5]}\n`,
-            `gclient: ${gclient/sz[6]}\n`,
-            `gserver: ${gserver/sz[7]}\n`,
-            `dbm: ${dbm/sz[8]}\n`,
-            `bigdb: ${bigdb/sz[9]}\n`,
-            `mle: ${mle/sz[10]}\n`,
-            `what: ${what/sz[11]}\n`,
-            `ma: ${ma/sz[12]}\n`,
-            `iot: ${iot/sz[13]}\n`,
-        );
+        // console.log(
+        //     `front: ${front/sz[0]}\n`,
+        //     `back: ${back/sz[1]}\n`,
+        //     `desk: ${desk/sz[2]}\n`,
+        //     `mobile: ${mobile/sz[3]}\n`,
+        //     `model: ${model/sz[4]}\n`,
+        //     `uiux: ${uiux/sz[5]}\n`,
+        //     `gclient: ${gclient/sz[6]}\n`,
+        //     `gserver: ${gserver/sz[7]}\n`,
+        //     `dbm: ${dbm/sz[8]}\n`,
+        //     `bigdb: ${bigdb/sz[9]}\n`,
+        //     `mle: ${mle/sz[10]}\n`,
+        //     `what: ${what/sz[11]}\n`,
+        //     `ma: ${ma/sz[12]}\n`,
+        //     `iot: ${iot/sz[13]}\n`,
+        // );
 
-        history.push({
-            pathname: "/mbti/result",
-            state: {scoreValue: totalScore}
-        })
+        dispatch(Actions.deti.result(totalScore));
+        navigate("/mbti/result");
     }
 
     return (
