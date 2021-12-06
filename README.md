@@ -17,4 +17,4 @@
 > - `Sass`
 
 ## install
-> - `npm install react-google-login`
+> - `yarn install`
