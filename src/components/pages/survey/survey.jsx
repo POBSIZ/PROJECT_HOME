@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { hot } from "react-hot-loader";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useNavigate, usePrompt } from "react-router-dom";
+// import {Prompt} from 'react-router';
 
 import "./assets/css/survey.scss";
 
@@ -28,16 +29,33 @@ const SurveyListSubQuestion = ({ sd_item }) => {
                 return (
                     <div className='itm-sub' key={ti}>
                         <label htmlFor={'q' + sd_item.order + '_' + ti}>{td_item.sub_content}</label>
+
+                        {/* can_select가 false 일시 기타 */}
                         {td_item.can_select == false ? (
                             <div className='sub_other'>
-                                <input
-                                    type="radio"
-                                    onClick={e => focusInput(e)}
-                                    id={'q' + sd_item.order + '_' + ti}
-                                    name={'q' + sd_item.order}
-                                    data-id={sd_item.id}
-                                    required={sd_item.required}
-                                />
+                                {
+                                    // can_duplicate가 false 일시 객관식 기타 문항
+                                    sd_item.can_duplicate == false ? (
+                                        <input
+                                            type="radio"
+                                            onClick={e => focusInput(e)}
+                                            id={'q' + sd_item.order + '_' + ti}
+                                            name={'q' + sd_item.order}
+                                            data-id={sd_item.id}
+                                            required={sd_item.required}
+                                        />
+                                    ) : (
+                                        <input
+                                            type="checkbox"
+                                            onClick={e => focusInput(e)}
+                                            id={'q' + sd_item.order + '_' + ti}
+                                            name={'q' + sd_item.order}
+                                            data-id={sd_item.id}
+                                            required={sd_item.required}
+                                        />
+
+                                    )
+                                }
                                 <input
                                     type='text'
                                     onChange={e => handleInput(e)}
@@ -47,6 +65,7 @@ const SurveyListSubQuestion = ({ sd_item }) => {
                                 />
                             </div>
                         ) : (
+                            // can_duplicate 가 false 일시 객관식
                             sd_item.can_duplicate == false ? (
                                 <input
                                     type="radio"
@@ -76,27 +95,22 @@ const SurveyListSubQuestion = ({ sd_item }) => {
 
 const SurveyListQuestion = ({ fd_item }) => {
 
-    const handleInput = (e) => {
-        console.log(e.target.value);
-    }
-
     return (
         <>
             {fd_item.question?.map((sd_item, si) => {
                 return (
                     <li className='surveyList_question-itm' key={si}>
-                        <h2>{sd_item.order} - {sd_item.content}</h2>
+                        <h2>{sd_item.order + 1} - {sd_item.content}</h2>
                         <p>{sd_item.description}</p>
                         <div className='itm-subList'>
                             {
+                                // is_multichoice가 false 일시 주관식
                                 sd_item.is_multichoice == false ? (
                                     <textarea
-                                        // type="textarea" 
                                         id={'q' + sd_item.order}
                                         name={'q' + sd_item.order}
                                         data-id={sd_item.id}
                                         required={sd_item.required}
-                                        onChange={e=>handleInput(e)}
                                     />
                                 ) : (
                                     <SurveyListSubQuestion sd_item={sd_item} />
@@ -136,21 +150,37 @@ const SurveyList = ({ questionList }) => {
 
 const Survey = () => {
 
+    const surveyID = 3;
+
+    const navigate = useNavigate();
+
     const [questionList, setQuestionList] = useState();
 
     const getQuestionList = async () => {
 
         const getList = await axios({
             method: 'GET',
-            url: `v1/survey/${3}`,
+            url: `v1/survey/${surveyID}`,
         })
         setQuestionList([getList.data])
-        // console.log(getList.data);
+    }
+
+    const setReloadEvent = (e) => {
+        e.preventDefault();
+        console.log('STOP');
+        e.returnValue = '';
     }
 
     useEffect(() => {
         getQuestionList()
-        return () => { }
+        // window.addEventListener('beforeunload', (e) => { setReloadEvent(e) })
+        return (event) => {
+            // if (confirm('s')) {
+            //     window.removeEventListener('beforeunload', (e) => { setReloadEvent(e) })
+            // } else {
+            //     navigate(-1);
+            // }
+        }
     }, [])
 
     const onSubmit = async (e) => {
@@ -181,34 +211,41 @@ const Survey = () => {
 
         questionList[0].question.map((item, i) => {
             try {
-                const targetValue = eval(`e.target.q${i+1}.value`);
-    
+                let targetValue = [eval(`e.target.q${i}.value`)];
+                const getTarget = eval(`e.target.q${i}`);
+                console.log(getTarget);
+
                 let targetID = eval('');
-                const targetLength = eval(`e.target.q${i+1}.length`);
-                if (targetLength == undefined) { targetID = eval(`e.target.q${i+1}.dataset.id`); }
-                else { targetID = eval(`e.target.q${i+1}[0].dataset.id`); }
-    
+                const targetLength = eval(`e.target.q${i}.length`);
+                if (targetLength == undefined) { targetID = eval(`e.target.q${i}.dataset.id`); }
+                else {
+                    targetID = eval(`e.target.q${i}[0].dataset.id`);
+                    targetValue = []
+                    getTarget.forEach((item, i) => {
+                        if (item.checked == true) {
+                            targetValue.push(item.value);
+                        }
+                    })
+                }
+
                 dataSet.answers.push({
                     question_id: [targetID],
-                    answer: [targetValue]
+                    answer: targetValue
                 })
-                
+
             } catch (error) {
                 console.log(error);
             }
         });
 
-        // formData.append('data', new Blob([ JSON.stringify(dataSet) ], {type : "application/json"}));
         formData.append('data', JSON.stringify(dataSet));
 
         const postSurvey = await axios({
             method: 'POST',
-            url: `v1/survey/${3}/applier`,  
+            url: `v1/survey/${surveyID}/applier`,
             mode: 'cors',
             headers: {
-                // 'Content-Type': false,
                 'Content-Type': 'multipart/form-data',
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             data: formData,
         })
@@ -220,7 +257,7 @@ const Survey = () => {
             <div className='survey_profile'>
                 <h1>기본 정보 기입</h1>
                 <input className='profile-name' name='name' type="text" placeholder='이름' required />
-                <input className='profile-phone' name='phone' type="text" placeholder='전화번호' required />
+                <input className='profile-phone' name='phone' type="text" placeholder='010-xxxx-xxxx' required />
                 <input className='profile-birth' name='birth' type="date" placeholder='생일' required />
                 <select className='profile-sex' name="sex" required >
                     <option value="M">남자</option>

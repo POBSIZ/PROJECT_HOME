@@ -37,6 +37,9 @@ const Register = () => {
           password1: e.target.pwd1.value,
           password2: e.target.pwd2.value,
           email: e.target.email.value,
+          first_name: e.target.first_name.value,
+          last_name: e.target.last_name.value,
+          gender: e.target.gender.value,
         },
       });
       console.log(postAuthSignup);
@@ -57,19 +60,39 @@ const Register = () => {
 
       } catch (err) { console.log(err); }
 
-    } catch (error) { console.log(error); }
+    } catch (error) { 
+      console.log(error.response); 
+    }
 
   };
 
   // 아이디 중복확인 비밀번호 중복체크: 이후 추가 예정
   // 자동 중복확인? or alert 사용
   return (
-    <article className="register-form">
-      <section className="register-form__header">
+    <section className="register-form">
+      <article className="register-form_header">
         <h1>회원가입</h1>
-      </section>
+      </article>
 
-      <form className="register-form__container" onSubmit={signup}>
+      <form className="register-form_container" onSubmit={signup}>
+        
+        <label className='form-name'>
+          <span>이름</span>
+          <div>
+            <input required name="last_name" type="text" placeholder="성" />
+            <input required name="first_name" type="text" placeholder="이름" />
+          </div>
+        </label>
+        
+        <label className='form-gender'>
+          <span>성별</span>
+          <select name="gender" id="">
+            <option value="">NULL</option>
+            <option value="M">남자</option>
+            <option value="F">여자</option>
+          </select>
+        </label>
+        
         <label>
           <span>아이디</span>
           <input required name="username" type="text" placeholder="id" />
@@ -103,7 +126,7 @@ const Register = () => {
 
         <input type="submit" value="회원가입" />
       </form>
-    </article>
+    </section>
   );
 };
 

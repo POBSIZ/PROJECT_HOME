@@ -1,8 +1,6 @@
 @charset "utf-8";
 
-$color--border: #dadada;
-$color--white: #fff;
-$key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
+@import '../../../../../../vars';
 
 .container {
   display: flex;
@@ -14,13 +12,14 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
   margin: 70px 0px 50px 0px;
   text-align: center;
   h1 {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     font-size: 40px;
     font-weight: 600;
   }
   p {
     width: 100%;
     opacity: 0.7;
+    font-size: 16px;
     margin-bottom: 10px;
   }
 }
@@ -71,27 +70,22 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
 @media screen and (max-width: 280px) {
   .welcom-header {
     margin: 70px 0px 50px 0px;
-    text-align: center;
     h1 {
-      margin-bottom: 40px;
       font-size: 18px;
       font-weight: 600;
     }
     p {
       width: 100%;
-      font-size: 5px;
+      font-size: 12px;
       opacity: 0.7;
     }
   }
 
   #login-form {
-    flex-direction: column;
     width: 80%;
 
     input {
-      overflow: hidden;
       width: 100%;
-      border: solid 1px $color--border;
       padding: 15px 0px;
       font-size: 10px;
       margin-bottom: 20px;
@@ -103,24 +97,15 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 15px;
       line-height: 49px;
       width: 100%;
-      background-color: $key-gradient;
-      cursor: pointer;
-      color: #fff;
       padding: 3px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 
   .help-login {
     width: 100%;
-    flex-direction: row;
-    text-align: center;
     a {
-      text-align: left;
       margin: 0px 15px;
-      text-decoration: none;
-      color: $key-gradient;
       font-size: 10px;
     }
   }
@@ -129,27 +114,20 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
 @media screen and (min-width: 281px) and (max-width: 480px) {
   .welcom-header {
     margin: 70px 0px 50px 0px;
-    text-align: center;
     h1 {
-      margin-bottom: 40px;
       font-size: 25px;
       font-weight: 600;
     }
     p {
-      width: 90%;
-      font-size: 11px;
-      opacity: 0.7;
+      font-size: 12px;
     }
   }
 
   #login-form {
-    flex-direction: column;
     width: 90%;
 
     input {
-      overflow: hidden;
       width: 100%;
-      border: solid 1px $color--border;
       padding: 15px 0px;
       font-size: 12px;
       margin-bottom: 20px;
@@ -161,22 +139,15 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 15px;
       line-height: 49px;
       width: 100%;
-      cursor: pointer;
-      color: #fff;
       padding: 3px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 
   .help-login {
     width: 100%;
-    flex-direction: row;
-    text-align: center;
     a {
-      text-align: left;
       margin: 0px 15px;
-      text-decoration: none;
       font-size: 10px;
     }
   }
@@ -185,27 +156,16 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
 @media screen and (min-width: 481px) and (max-width: 720px) {
   .welcom-header {
     margin: 70px 0px 50px 0px;
-    text-align: center;
     h1 {
-      margin-bottom: 40px;
       font-size: 30px;
-      font-weight: 600;
     }
-    p {
-      width: 100%;
-      font-size: 15px;
-      opacity: 0.7;
-    }
+    p {}
   }
 
   #login-form {
-    flex-direction: column;
     width: 80%;
 
     input {
-      overflow: hidden;
-      width: 100%;
-      border: solid 1px $color--border;
       padding: 15px 0px;
       font-size: 12px;
       margin-bottom: 20px;
@@ -217,22 +177,14 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 15px;
       line-height: 49px;
       width: 100%;
-      cursor: pointer;
-      color: #fff;
       padding: 3px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 
   .help-login {
-    width: 100%;
-    flex-direction: row;
-    text-align: center;
     a {
-      text-align: left;
       margin: 0px 15px;
-      text-decoration: none;
       font-size: 12px;
     }
   }
@@ -242,18 +194,14 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
   .welcom-header {
     margin: 70px 0px 50px 0px;
     h1 {
-      margin-bottom: 40px;
       font-size: 50px;
     }
     p {
-      width: 100%;
-      font-size: 20px;
-      opacity: 0.7;
+      font-size: 16px;
     }
   }
 
   #login-form {
-    flex-direction: column;
     width: 50%;
 
     input {
@@ -269,23 +217,16 @@ $key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 18px;
       line-height: 49px;
       width: 100%;
-      cursor: pointer;
-      color: #fff;
       padding: 3px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 
   .help-login {
     width: 100%;
-    flex-direction: row;
-    text-align: center;
     margin-top: 20px;
     a {
-      text-align: left;
       margin: 0px 15px;
-      text-decoration: none;
       font-size: 20px;
     }
   }

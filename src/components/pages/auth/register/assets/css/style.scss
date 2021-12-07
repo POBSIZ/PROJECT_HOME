@@ -8,7 +8,7 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
   align-items: center;
 }
 
-.register-form__header {
+.register-form_header {
   margin: 70px 0px 50px 0px;
   h1 {
     margin-bottom: 40px;
@@ -17,12 +17,14 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
   }
 }
 
-.register-form__container {
+.register-form_container {
   width: 50%;
   text-align: center;
+
   label {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
     span {
       padding-top: 15px;
       font-size: 18px;
@@ -34,12 +36,33 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       border: solid 1px $color--border;
       padding: 15px 0px;
       font-size: 15px;
-      margin-bottom: 20px;
     }
     input::placeholder {
       padding-left: 20px;
     }
   }
+
+  .form-name{
+    span{
+      text-align: left;
+    }
+    div{
+      display: flex;
+      width: 70%;
+      input:first-child{
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .form-gender{
+    margin-bottom: 20px;
+    select{
+      width: 70%;
+      padding: 15px 0px;
+    }
+  }
+
   input[type="submit"] {
     margin-top: 40px;
     font-size: 18px;
@@ -56,13 +79,9 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
 }
 
 @media screen and (max-width: 250px) {
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .register-form {}
 
-  .register-form__header {
+  .register-form_header {
     margin: 70px 0px 50px 0px;
     h1 {
       margin-bottom: 40px;
@@ -71,19 +90,12 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
     }
   }
 
-  .register-form__container {
+  .register-form_container {
     width: 90%;
-    text-align: center;
     label {
-      display: flex;
-      justify-content: space-between;
-      span {
-        display: none;
-      }
+      span {}
       input {
-        overflow: hidden;
         width: 100%;
-        border: solid 1px $color--border;
         padding: 15px 0px;
         font-size: 15px;
         margin-bottom: 20px;
@@ -97,24 +109,16 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 18px;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
-      color: #fff;
-      cursor: pointer;
       padding: 10px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 }
 
 @media screen and (min-width: 251px) and (max-width: 480px) {
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .register-form {}
 
-  .register-form__header {
+  .register-form_header {
     margin: 70px 0px 50px 0px;
     h1 {
       margin-bottom: 40px;
@@ -123,19 +127,12 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
     }
   }
 
-  .register-form__container {
+  .register-form_container {
     width: 90%;
-    text-align: center;
     label {
-      display: flex;
-      justify-content: space-between;
-      span {
-        display: none;
-      }
+      span {}
       input {
-        overflow: hidden;
         width: 100%;
-        border: solid 1px $color--border;
         padding: 15px 0px;
         font-size: 15px;
         margin-bottom: 20px;
@@ -149,24 +146,16 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 18px;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
-      color: #fff;
-      cursor: pointer;
       padding: 10px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 }
 
 @media screen and (min-width: 481px) and (max-width: 720px) {
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .register-form {}
 
-  .register-form__header {
+  .register-form_header {
     margin: 70px 0px 50px 0px;
     h1 {
       margin-bottom: 40px;
@@ -175,19 +164,12 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
     }
   }
 
-  .register-form__container {
+  .register-form_container {
     width: 70%;
-    text-align: center;
     label {
-      display: flex;
-      justify-content: space-between;
-      span {
-        display: none;
-      }
+      span {}
       input {
-        overflow: hidden;
         width: 100%;
-        border: solid 1px $color--border;
         padding: 15px 0px;
         font-size: 15px;
         margin-bottom: 20px;
@@ -201,24 +183,16 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 18px;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
-      color: #fff;
-      cursor: pointer;
       padding: 10px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 }
 
 @media screen and (min-width: 721px) and (max-width: 1050px) {
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  .register-form {}
 
-  .register-form__header {
+  .register-form_header {
     margin: 70px 0px 50px 0px;
     h1 {
       margin-bottom: 40px;
@@ -227,21 +201,15 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
     }
   }
 
-  .register-form__container {
+  .register-form_container {
     width: 70%;
-    text-align: center;
     label {
-      display: flex;
-      justify-content: space-between;
       span {
         padding-top: 15px;
         font-size: 18px;
-        text-align: center;
       }
       input {
-        overflow: hidden;
         width: 70%;
-        border: solid 1px $color--border;
         padding: 15px 0px;
         font-size: 15px;
         margin-bottom: 20px;
@@ -255,12 +223,8 @@ $color--green: linear-gradient(to right, #6070ff 0%, #d62839 100%);
       font-size: 18px;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
-      color: #fff;
-      cursor: pointer;
       padding: 10px 0px;
       border-radius: 5px;
-      border: none;
     }
   }
 }

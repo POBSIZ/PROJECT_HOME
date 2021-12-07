@@ -11,6 +11,11 @@ import { nanoid } from 'nanoid';
 
 import "./assets/css/survey_create.scss";
 
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import {  } from "@fortawesome/free-brands-svg-icons";
+import {  } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 const SurveyClist = () => {
     // console.log('render SurveyClist');
@@ -24,15 +29,15 @@ const SurveyClist = () => {
             if (fd_item.id == _id) {
                 if (_type == 'desc') {
                     fd_item.desc = e.target.value;
-                } else {
-                    fd_item.data = e.target.value;
+                } else if (_type == 'require') {
+                    fd_item.required = e.target.checked;
+                }else { 
+                    fd_item.data = e.target.value; 
                 }
-                fd_item.required = e.target.checked;
             } else {
                 fd_item.sub_list.forEach((sd_item, sd_i) => {
                     if (sd_item.id == _id) {
                         sd_item.data = e.target.value;
-                    } else {
                     }
                 })
             }
@@ -125,10 +130,14 @@ const SurveyClist = () => {
         const _id = nanoid();
         let _surList = Object.assign([], surveyStore.list);
         let _subQuestionList = Object.assign([], _question);
+        let data = '';
+        if (_type == '기타_다' || _type == '기타_객') {
+            data = '기타';
+        }
         _subQuestionList.sub_list.push({
             id: _id,
             type: _type,
-            data: '',
+            data: data,
         });
         dispatch(Actions.survey.create(_surList));
     }
@@ -213,7 +222,7 @@ const SurveyClist = () => {
                 })
             }
             <div className='surveyCreate_list-add' onClick={onClickAddItem}>
-                <i className="fas fa-plus" />
+                <FontAwesomeIcon icon={faPlus} />
             </div>
         </ul>
     )
@@ -227,13 +236,15 @@ const SurveyCreate = () => {
     const cookies = useCookies();
 
     axios.defaults.headers.common['Authorization'] = `JWT ${auth.accessToken}`;
-    // axios.defaults.headers.common['X-CSRFToken'] = cookies[0].csrftoken;
+    axios.defaults.headers.common['X-CSRFToken'] = cookies[0].csrftoken;
 
     const postList = async (e) => {
         e.preventDefault();
         e.persist();
 
         const _surList = Object.assign([], surveyStore.list)
+
+        console.log(_surList);
 
         let postData = {
             question: [],
@@ -247,31 +258,28 @@ const SurveyCreate = () => {
 
             let _is_multichoice = Boolean;
             let _can_duplicate = Boolean;
+            let _can_duplicate_list = [];
             let _sub_question = []; 
 
-            console.log('sub', fd_item.sub_list);
-
-            console.log(fd_item.sub_list.length);
             if(fd_item.sub_list.length > 1 ){ 
                 _is_multichoice = true; 
             }else{ _is_multichoice = false; }
 
             fd_item.sub_list?.forEach((sd_item, sd_i)=>{
             
-                let _can_select = Boolean;    
-
-                console.log(sd_item.type);
-                console.log('_is_multichoice:', _is_multichoice);
-                console.log('_can_duplicate:', _can_duplicate);
-                console.log('_can_select:', _can_select);
+                let _can_select = Boolean;
                 
-                if(sd_item.type == '객관식'){ 
-                    _can_select = true; 
-                }else{ _can_select = false; }
+                if(sd_item.type == '기타_다' || sd_item.type == '기타_객'){ 
+                    _can_select = false; 
+                }else{ _can_select = true; }
 
-                if(sd_item.type == '다항식' || sd_item.type == '기타_다'){ 
-                    _can_duplicate = true; 
-                }else{ _can_duplicate = false; }
+                if(sd_i == 0){
+                    if(sd_item.type == '다항식' || sd_item.type == '기타_다'){ 
+                        _can_duplicate = true; 
+                    }else{ _can_duplicate = false; }
+    
+                    _can_duplicate_list.push(_can_duplicate);
+                }
 
                 _sub_question.push({
                     sub_content: [sd_item.data],
@@ -286,16 +294,17 @@ const SurveyCreate = () => {
                     required: [fd_item.required],
                     order: [fd_i],
                     is_multichoice: [_is_multichoice],
-                    can_duplicate: [_can_duplicate],
-                    sub_question: [_sub_question]
+                    can_duplicate: [_can_duplicate_list[0]],
+                    sub_question: _sub_question
                 }
             )
+
         })
 
         console.log(postData);
 
-        // const res = await axios.post('v1/survey/', postData);
-        // console.log(res);
+        const res = await axios.post('v1/survey/', postData);
+        console.log(res);
     }
 
     return (

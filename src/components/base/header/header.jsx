@@ -7,7 +7,6 @@ import { Helmet } from "react-helmet";
 import { useSelector, useDispatch } from 'react-redux';
 import Actions from "../../../redux/actions";
 
-
 import "./assets/css/style.scss";
 
 function NavTab () {
@@ -36,16 +35,6 @@ function NavTab () {
     };
 
     const navClose = () => {
-        // const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-        // let navWidth = '';
-        // let navBgWidth = ''
-        // if (vw < 1000){
-        //     navWidth = '100%';
-        //     navBgWidth = '-100%';
-        // }else{
-        //     navWidth = '100%';
-        //     navBgWidth = '-100%';
-        // }
         setNavStyle({
             transform: `translateX(100%)`,
             opacity: '0',
@@ -104,11 +93,11 @@ function NavTab () {
                         <Link to="/mbti" onClick={navClose}>📝DETI</Link>
                         {/* <Link to="/test" onClick={navClose}>TEST</Link> */}
                         <Link to="/survey/main" onClick={navClose}>📨지원하기</Link>
-                        <Link to="/survey" onClick={navClose}>SURV</Link>
+                        {/* <Link to="/survey" onClick={navClose}>SURV</Link>
                         <Link to="/survey/create" onClick={navClose}>SURV_C</Link>
                         <Link to="/notice" onClick={navClose}>공지</Link>
                         <Link to="/activity" onClick={navClose}>활동</Link>
-                        <Link to="/log" onClick={navClose}>LOG</Link>
+                        <Link to="/log" onClick={navClose}>LOG</Link> */}
                     </ul>
                 </div>
                 <div className='navTab-bg' onClick={navClose} style={navBgStyle}></div>

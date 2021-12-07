@@ -34,7 +34,8 @@ const Login = () => {
       await dispatch(Actions.auth.login(postAuth.data.access_token))
       navigate(-1);
     }catch(err){
-      console.log(err);
+      console.log(err.response);
+      alert(err.response.data.message);
     }
 
   };
@@ -42,7 +43,7 @@ const Login = () => {
   return (
     <div className="container">
       <header className="welcom-header">
-        <h1>Welcom to PROJECT</h1>
+        <h1>PROJECT</h1>
         <p>계정을 가지고 있다면 이메일로 로그인 해주세요 :)</p>
       </header>
 
