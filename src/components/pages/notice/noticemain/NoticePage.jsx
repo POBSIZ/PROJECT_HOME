@@ -1,55 +1,84 @@
 import React, { useState, useEffect } from 'react';
 import { hot } from "react-hot-loader";
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Routes, useLocation } from 'react-router-dom';
 import './scss/NoticePage.scss';
 import axios from 'axios';
-
-//import data from './assets/data.json';
+import speaker from '../noticemain/assets/speaker.png';
 
 import NoticeBox from './components/NoticeBox';
 import NoticeCreate from '../create/NoticeCreate';
 
-function NoticePage({match}) {
+const reqUrl = "http://3.35.43.53";
+
+function NoticePage() {
+
+  const match = useLocation();
+
+  const token = localStorage?.getItem('access_token');
 
   const [notice, setData] = useState([]);
+  const [userdata, setUserData] = useState([]);
 
-  // let notice = data.notice;
-  // console.log(notice)
 
-  const testAPI = () => {
-    const url = "http://3.35.43.53/api/v1/board/1";
+  const getNoticeAPI = () => {
+    const url = `${reqUrl}/api/v1/board/1`;
+
     axios.get(url)
-    .then((res) => {setData(res.data)
+    .then((res) => {
+      setData(res.data);
       console.log(res.data)
     })
-    .catch(function(error) {
-        console.log("실패");
+    .catch(function(err) {
+        console.log(err);
     })
   }
 
+  const getUserData = () => {
+    axios.get(`${reqUrl}/api/v1/users/me/`,  {
+      headers:{
+        Authorization: `jwt ${token}`,
+        'Content-Type': 'application/json'
+        },
+    })
+    .then((res) => {
+      setUserData(res.data);
+    })
+    .catch(function(err) {
+        console.log(err);
+    })
+  }
+
+
   useEffect(() => {
-    testAPI()		
+    getNoticeAPI();	
+    getUserData();
   },[])
 
  
-
-
   return(
-    <div>
-      <div className="titleContainer">
-        <h1 className="titleText">NOTICE</h1>
-        <div className="addText"><span ><Link to={`${match.url}/create`}>추가</Link></span></div>
+    <div className="total_container">
+      <div className="nHeader_container">
+        <div className="title_container">
+          <h1>공지 <span className='emoji'>📢</span></h1>
+          <div>PROJECT 공지입니다.</div>
+        </div>
+
+        <div className="add_text">
+          { userdata.is_superuser == true ? 
+            <span><Link to={`${match.pathname}/create`}>추가</Link></span>
+          :null}
+        </div>
       </div >
 
-      <div className="listContainer">
+      <div className="list_container">
         {notice.map((c, i)=> {
           return(<NoticeBox key={i} content={c} match={match}/>)
         })}
       </div>
 
-      <Switch>
-        <Route path={`${match.url}/create`} component={NoticeCreate} />
-      </Switch>
+      <Routes>
+        <Route path={`${match.pathname}/create`} elements={<NoticeCreate/>} />
+      </Routes>
     
     </div>
   );

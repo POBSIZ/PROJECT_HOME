@@ -7,36 +7,52 @@
 .title_text {
   font-size: 20pt;
 }
+
+.wrapper-class {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 4rem;
+}
+.editor {
+  height: 500px !important;
+  border: 1px solid #f1f1f1 !important;
+  padding: 5px !important;
+  border-radius: 2px !important;
+  }
+.toolbar-class {
+  height: 50px;
+  width: 100px;
+}
   
 .input_container {
     margin-top: 20px;
     width: 60%;
 
-    .titleInput {
+    .title_input {
         width: 100%;
         padding:10px;
         height: 70px;
         font-size: 17pt;
     }
-    .ContentInput {
+    .Content_input {
         width: 100%;
         padding:10px;
         font-size: 12pt;
         height: 400px;
     }
+    .image_input {
+      margin: 10px;
+      margin-bottom: 0px;
+    }
+
 }
 
 .fileContainer {
   display: flex;
   flex-direction: column;
-  padding:10px;
+  margin-top: 0px;
+  margin:10px;
 
-  button {
-    font-size: 15pt;
-    height: 25px;
-    border: 1px solid black;
-    margin-right: 10px;
-  }
   input {
     margin-bottom: 10px;
     font-size: 10pt;
@@ -50,21 +66,6 @@
 
 }
 
-.beforeImg {
-    border: 1px solid black;
-    margin-left: 10px;
-    width: 100px;
-    height: 150px;
-}
-
-.saveButton {
-    border: 1px solid black;
-    background-color:#4374D9;
-    color: #fff;
-    padding:5px;
-    width: 80px;
-    height: 30px;
-}
 
 .file_list {
   margin-left: 75px;
@@ -72,5 +73,16 @@
     font-size: 10pt;
     margin-bottom: 5px;
   }
+}
 
+.save_button {
+  border: 1px solid black;
+  background-color:#4374D9;
+  color: #fff;
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  padding:5px;
+  width: 80px;
+  height: 30px;
 }

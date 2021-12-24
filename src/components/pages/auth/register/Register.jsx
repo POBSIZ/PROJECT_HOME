@@ -1,31 +1,64 @@
 import React, { useState } from "react";
 import { hot } from "react-hot-loader";
-import { useHistory } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
+
+import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import Actions from "../../../../redux/actions";
 
 import "./assets/css/style.scss";
 
 const Register = () => {
-  const history = useHistory();
 
-  const test = async (e) => {
+  const dispatch = useDispatch();
+  const auth = useSelector(store => store.auth);
+
+  const navigate = useNavigate();
+
+  const signup = async (e) => {
     e.persist();
     e.preventDefault();
 
-    const postAuth = await fetch("http://3.35.43.53/api/v1/users/me/", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: e.target.username.value,
-        email: e.target.email.value,
-        password1: e.target.pwd1.value,
-        password2: e.target.pwd2.value,
-      }),
-    });
+    try {
+      console.log(
+        'username:', e.target.username.value, '\n',
+        'password1:', e.target.pwd1.value, '\n',
+        'password2:', e.target.pwd2.value, '\n',
+        'email:', e.target.email.value, '\n',
+      );
 
-    history.push("/");
+      const postAuthSignup = await axios({
+        method: "POST",
+        mode: "cors",
+        url: 'v1/users/me/',
+        data: {
+          username: e.target.username.value,
+          password1: e.target.pwd1.value,
+          password2: e.target.pwd2.value,
+          email: e.target.email.value,
+        },
+      });
+      console.log(postAuthSignup);
+
+      try {
+        const postAuthLogin = await axios({
+          method: 'POST',
+          url: "v1/auth/login/",
+          mode: 'cors',
+          data: {
+            username: e.target.username.value,
+            password: e.target.pwd1.value,
+          }
+        });
+        console.log("access_token", postAuthLogin);
+        await dispatch(Actions.auth.signup(postAuthLogin.data.access_token))
+        navigate("/");
+
+      } catch (err) { console.log(err); }
+
+    } catch (error) { console.log(error); }
+
   };
 
   // 아이디 중복확인 비밀번호 중복체크: 이후 추가 예정
@@ -36,7 +69,7 @@ const Register = () => {
         <h1>회원가입</h1>
       </section>
 
-      <form className="register-form__container" onSubmit={test}>
+      <form className="register-form__container" onSubmit={signup}>
         <label>
           <span>아이디</span>
           <input required name="username" type="text" placeholder="id" />

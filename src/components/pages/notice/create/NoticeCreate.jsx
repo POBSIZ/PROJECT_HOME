@@ -1,142 +1,167 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Link, Switch, useNavigate } from 'react-router-dom';
 import './scss/NoticeCreate.scss';
 
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import styled from 'styled-components';
+import { EditorState } from 'draft-js';
 
-export default function NoticeCreate({match}) {
 
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
-    const [imgUrl, setImageUrl] = useState();
+export default function NoticeCreate({ match }) {
 
-    const [fileUrl, setFileUrl] = useState([]);
-    const [fileName, setFileName] = useState([]);
+  const navigate = useNavigate();
 
-    const token = localStorage?.getItem('access_token');
-    console.log('토큰 : ',token)
-    const config = {
-      headers: {"Authorization": `JWT ${token}`}
-    }
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  const [imgUrl, setImageUrl] = useState();
 
-    const addImage = (e) => {
-      //const thumbnail = e.target.files[0]
-      //const lookImg = URL.createObjectURL(thumbnail);
-      setImageUrl(e.target.files[0])
-    }
+  const [fileUrl, setFileUrl] = useState([]);
+  const [fileName, setFileName] = useState([]);
 
-    // const addFile = (e) => {
-    //   const selectFile = e.target.files;
+  const token = localStorage?.getItem('access_token');
+  console.log('토큰 : ', token)
+  const config = {
+    headers: { "Authorization": `JWT ${token}` }
+  }
 
-    //   //화면에 보여질 이름 리스트
-    //   const fileNameList = []
-    //   for(let i = 0; i<selectFile.length; i+=1) {
-    //     const selectName = selectFile[i].name
-    //     fileNameList.push(selectName)
-    //     setFileUrl(selectFile[i])
-    //   }
-    //   console.log("파일 이름 리스트",fileNameList)
-    //   setFileName(fileNameList)
+
+  // useState로 상태관리하기 초기값은 EditorState.createEmpty()
+  // EditorState의 비어있는 ContentState 기본 구성으로 새 개체를 반환 => 이렇게 안하면 상태 값을 나중에 변경할 수 없음.
+  // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  // const onEditorStateChange = (editorState) => {
+  //   // editorState에 값 설정
+  //   setEditorState(editorState);
+  // };
+
+  const addImage = (e) => {
+    const thumbnail = e.target.files[0]
+    console.log("썸네일 제발 찍혀라", thumbnail)
+    //const lookImg = URL.createObjectURL(thumbnail);
+    setImageUrl(thumbnail)
+  }
+
+  const addFile = (e) => {
+    const selectFile = e.target.files[0];
+    //setFileUrl(selectFile)
+    //화면에 보여질 이름 리스트
+    // const fileNameList = []
+    // const fileInfo = []
+
+    // for(let i = 0; i<selectFile.length; i+=1) {
+    //   const selectName = selectFile[i].name
+    //   fileNameList.push(selectName)
+    //   fileInfo.push(selectFile[i])
     // }
 
-    const onSubmit = async (e) => {
-      e.persist();
-      e.preventDefault();
+    // console.log("파일 이름 리스트",fileNameList)
+    // console.log("파일 인포 리스트",fileInfo)
+    // setFileName(fileNameList)
+    // setFileUrl(fileInfo)
+  }
 
-      console.log("이타겟", e.target)
-      console.log("썸네일 타겟", e.target.image.value)
+  const onSubmit = async (e) => {
 
-      const formData = new FormData();
-      // formData.append('thumbnail', e.target.thumbnail.value);
-      // formData.append('title', e.target.title.value);
-      // formData.append('content', e.target.content.value);
-      // formData.append('thumbnail', e.target.thumbnail.value);
+    console.log("실행 자체가 안되네..?")
+    console.log("파일 여러개 리스트 담겼니?", fileUrl)
 
-      //formData.append('access_token', content);
+    const formData = new FormData();
+    formData.append('thumbnail', imgUrl);
+    formData.append('title', title);
+    formData.append('content', content);
+    formData.append('upload_files', fileUrl);
 
-      // for (let i=0; i>fileUrl.length; i++) {
-      //   formData.append('files['+i+']', fileUrl[i]);
-      //   console.log("파일 하나하나의 정보는?", fileUrl[i])
-      // }
-      
-      const postBoard = await fetch('http://172.30.1.58:8000/api/v1/board/1/post',{
-        method: 'POST',
-        headers:{
+
+    // for (let i=0; i>fileUrl.length; i++) {
+    //   console.log("이거 실행돼??")
+    //   formData.append('upload_files', fileUrl[i]);
+    //   console.log("파일 하나하나의 정보는?", fileUrl[i])
+    // }
+
+    // fileUrl.forEach(file=>{
+    //   formData.append("upload_files", file);
+    // });
+
+
+    axios.post('http://3.35.43.53/api/v1/board/1/post', formData,
+      {
+        headers: {
           Authorization: `jwt ${token}`,
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify(
-          {
-            title: e.target.title.value,
-            content: e.target.content.value,
-            thumbnail: e.target.image.value
-          }
-        ), 
       })
-      const resData = await postBoard.json(); 
-      console.log(resData)
-      
-      // axios.post('http://3.35.43.53/api/v1/board/1/post', config, formData)
-      // .then((res) => {console.log(res)})
-      // .catch((err) => {console.log("업로드 실패")})
-    }
+      .then((res) => {
+        console.log("완료 데이터", res)
+        if (res.statusText == "Created") {
+          alert("공지를 생성했습니다.");
+        }
+        navigate('/notice');
+        location.reload();
+      })
+      .catch((err) => { console.log("업로드 실패") })
 
-  return(
+
+  }
+
+  return (
+
+
+
     <div className="whole_container">
 
       <div className="title_text">공지작성</div>
 
-      <form className="input_container" onSubmit={onSubmit}>
-        <input 
-          name="title"
-          className="titleInput"
-          placeholder="제목" 
-          // value={title} 
-          onChange={(e)=> setTitle(e.target.value)}>       
+      <div className="input_container">
+        <input
+          className="title_input"
+          placeholder="제목"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}>
         </input>
 
         <textarea
           name="content"
-          className="ContentInput" 
-          placeholder="내용" 
-          // value={content}
-          // onChange={(e)=> setContent(e.target.value)}
+          className="Content_input"
+          placeholder="내용"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
         >
         </textarea>
-        <input type='file'
-          // name="thumbnail"
+
+        <input
+          className="image_input"
+          type='file'
           id='image'
           accept='image/*'
           name='image'
-          //onChange={addImage} 
+          onChange={addImage}
         >
         </input>
 
         <div className="fileContainer">
-          {/* <button>+</button> */}
- 
 
-          {/* <input type='file'
+          <input type='file'
             id='file'
-            multiple="multiple"
+            //multiple="multiple"
             accept='file/*'
             name='file'
             onChange={addFile} >
-          </input> */}
+          </input>
 
-          <div className="file_list">
+          {/* <div className="file_list">
             {fileName.map((c, i)=> {
               return(<div>{c}</div>)
             })}
-          </div>
+          </div> */}
         </div>
-        <input type="submit" value="SUBMIT" />
 
-      </form >
+      </div >
 
-      {/* <button className="saveButton" onClick={()=>onSubmit()}>저장</button> */}
+      <button className="save_button" onClick={() => onSubmit()}>저장</button>
 
-      
+
     </div>
   );
 }

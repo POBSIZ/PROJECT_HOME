@@ -2,7 +2,7 @@
 
 $color--border: #dadada;
 $color--white: #fff;
-$color--green: #03c75a;
+$key-gradient: linear-gradient(to right, #6070ff 0%, #d62839 100%);
 
 .container {
   display: flex;
@@ -42,10 +42,10 @@ $color--green: #03c75a;
   }
   input[type="submit"] {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 500 !important;
     line-height: 49px;
     width: 100%;
-    background-color: $color--green;
+    background-image: $key-gradient;
     cursor: pointer;
     color: #fff;
     padding: 10px 0px;
@@ -62,8 +62,9 @@ $color--green: #03c75a;
     text-align: left;
     margin: 0px 15px;
     text-decoration: none;
-    color: $color--green;
-    font-size: 13px;
+    color: #000;
+    font-size: 20px;
+    font-weight: 500;
   }
 }
 
@@ -100,10 +101,9 @@ $color--green: #03c75a;
     }
     input[type="submit"] {
       font-size: 15px;
-      font-weight: 700;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
+      background-color: $key-gradient;
       cursor: pointer;
       color: #fff;
       padding: 3px 0px;
@@ -120,7 +120,7 @@ $color--green: #03c75a;
       text-align: left;
       margin: 0px 15px;
       text-decoration: none;
-      color: $color--green;
+      color: $key-gradient;
       font-size: 10px;
     }
   }
@@ -159,10 +159,8 @@ $color--green: #03c75a;
     }
     input[type="submit"] {
       font-size: 15px;
-      font-weight: 700;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
       cursor: pointer;
       color: #fff;
       padding: 3px 0px;
@@ -179,7 +177,6 @@ $color--green: #03c75a;
       text-align: left;
       margin: 0px 15px;
       text-decoration: none;
-      color: $color--green;
       font-size: 10px;
     }
   }
@@ -218,10 +215,8 @@ $color--green: #03c75a;
     }
     input[type="submit"] {
       font-size: 15px;
-      font-weight: 700;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
       cursor: pointer;
       color: #fff;
       padding: 3px 0px;
@@ -238,7 +233,6 @@ $color--green: #03c75a;
       text-align: left;
       margin: 0px 15px;
       text-decoration: none;
-      color: $color--green;
       font-size: 12px;
     }
   }
@@ -247,11 +241,9 @@ $color--green: #03c75a;
 @media screen and (min-width: 721px) and (max-width: 1050px) {
   .welcom-header {
     margin: 70px 0px 50px 0px;
-    text-align: center;
     h1 {
       margin-bottom: 40px;
       font-size: 50px;
-      font-weight: 600;
     }
     p {
       width: 100%;
@@ -265,9 +257,7 @@ $color--green: #03c75a;
     width: 50%;
 
     input {
-      overflow: hidden;
       width: 100%;
-      border: solid 1px $color--border;
       padding: 15px 0px;
       font-size: 13px;
       margin-bottom: 20px;
@@ -277,10 +267,8 @@ $color--green: #03c75a;
     }
     input[type="submit"] {
       font-size: 18px;
-      font-weight: 700;
       line-height: 49px;
       width: 100%;
-      background-color: $color--green;
       cursor: pointer;
       color: #fff;
       padding: 3px 0px;
@@ -298,7 +286,6 @@ $color--green: #03c75a;
       text-align: left;
       margin: 0px 15px;
       text-decoration: none;
-      color: $color--green;
       font-size: 20px;
     }
   }

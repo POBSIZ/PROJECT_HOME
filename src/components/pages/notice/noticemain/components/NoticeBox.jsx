@@ -1,50 +1,63 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { hot } from "react-hot-loader";
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import '../scss/NoticeBox.scss'
-
 import NoticeDetail from '../../detail/NoticeDetail';
 
-//import file from '../assets/noticeImage.png';
+import eye from '../assets/eye.png'
+import default_img from '../assets/default_img.png'
 
 
 export default function NoticeBox({content, match}) {
 
-  const file = 'http://3.35.43.53' + `${content.thumbnail}`
+  const [image, setImage] = useState('')
   let create_date = (content.created_date).substring(0,10);
 
+  const token = localStorage?.getItem('access_token');
+
+  const getImageUrl = () => {
+    if (content.thumbnail == "/media/undefined") {
+      setImage(default_img)
+      
+    } else {
+      setImage('http://3.35.43.53/' + `${content.thumbnail}`)
+    }
+  }
+
+  useEffect(()=> {
+    getImageUrl();
+  })
+
+
   return(
-    <Link to={{ pathname: `${match.url}/${content.id}`, state: content }} className="linkStyle">
-    <li className="listStyle">
-      
-      {/* <div>
-        <div style={{padding:5, textAlign:'center'}}>
-          <div className="noticeText" style={{fontSize:'15pt', fontWeight:'500'}} >{content.title}</div>
-          <div className="noticeText" >작성자: {content.creator}</div>
-          <img src={file} style={{width:100, height:100, marginTop:10}}/>
-
-          <div className="noticeText" >view: 0</div>
-          <div className="noticeText" style={{fontSize:12}}>{create_date}</div>
-          
+    <Link to={{ 
+      pathname: `${match.pathname}/${content.id}`, 
+      state: {content} 
+    }}>
+      <div className="noticeBox_container">
+        
+        <div className="image_container">
+          <img className="img_style" src={image} />
         </div>
-      </div> */}
 
-      <div>
-        <div style={{padding:5, textAlign:'center'}}>
-          <div className="noticeText" style={{fontSize:'15pt', fontWeight:'500'}} >{content.title}</div>
-          <div className="noticeText" >작성자: {content.creator}</div>
-          <img src={file} style={{width:100, height:100, marginTop:10}}/>
-
-          <div className="noticeText" >view: 0</div>
-          <div className="noticeText" style={{fontSize:12}}>{create_date}</div>
-          
+        <div className="text_container">
+          <div className="little_text">작성자: {content.creator}</div>
+          <div className="title_text">{content.title}</div>
+          <div className="content_text">{content.content}</div>
+          <div className="little_text">{create_date}</div>
         </div>
-      </div>
-      
-      <Switch>
-        <Route path={`${match.url}/:id`} component={NoticeDetail}/>
-      </Switch>
-    </li>
+
+        <div className="view_box">
+
+          <span className="view_text">조회수: {content.hits}</span>
+        </div>
+ 
+    
+        <Routes>
+          <Route path={`${match.url}/:id`} elements={<NoticeDetail/>}/>
+        </Routes>
+    </div>
     </Link>
   );
   

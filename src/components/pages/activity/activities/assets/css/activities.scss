@@ -9,6 +9,7 @@
     text-align: center;
     justify-content: center;
     flex-direction: column;
+
     .line_text_top_box{
         width: 100%;
         margin-bottom: 30px;
@@ -31,6 +32,7 @@
     .line_text_year{
         background-color: white;
         font-size: 30px;
+        font-style: bold;
         font-weight: 500;
         z-index: 100;
     }
@@ -55,7 +57,7 @@
     justify-content: center;
     flex-wrap: wrap;
     .project_box{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        box-shadow: 0 4px 8px 0 rgba(66, 66, 66, 0.2);
         border: 1px solid whitesmoke;
         margin: 2.5%;
         padding: 2.5%;
@@ -67,16 +69,22 @@
         .project_box_img{
             width: 100%;
             height: 250px;
-            border-radius: 7px ;
+            object-fit: contain;
          }
         .project_box_text{
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            .project_box_text_title{
-                font-weight:500;
-                margin-top : 10px;
-                margin-bottom:5px;
+
+            .project_box_text-title{
+                font-weight: bold;
+                font-size: 18px;
+                margin: 5px 0;
+            }
+
+            .project_box_text-date{
+
             }
         }
     }

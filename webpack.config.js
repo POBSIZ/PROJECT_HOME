@@ -5,6 +5,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 
 const port = 3000;
+// const port = 8000;
 
 module.exports = {
     mode: 'development',
@@ -15,7 +16,7 @@ module.exports = {
     output: {
         path: __dirname + '/build',
         filename: 'app.js',
-        publicPath: '/'
+        publicPath: ''
     },
     resolve: {
         alias: {

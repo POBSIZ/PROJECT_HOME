@@ -1,0 +1,120 @@
+@import '../../../../../vars';
+
+.survey{
+    text-align: center;
+    padding-bottom: 10em;
+
+    .survey_profile{
+        margin: 2em auto 4em auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-flow: column;
+        width: 30%;
+
+        h1{
+            border: none;
+            font-size: 1.9em;
+            margin: 0;
+        }
+        
+        *{
+            font-size: 1.4em;
+            font-weight: 500;
+            width: 100%;
+            padding: 10px;
+            border-radius: 0;
+            border: 1px solid $base-black;
+            margin: 5px 0;
+        }
+    }
+
+    .surveyList{
+        width: 50%;
+        margin: auto;
+
+        .surveyList_head{
+            h1{
+                font-weight: bold;
+                font-size: 4em;
+            }
+            p{font-size: 1.6em;}
+            h3{
+                font-weight: 500;
+                font-size: 1.8em;
+                margin-top: .5em;
+            }
+        }
+
+        .surveyList_question{
+            .surveyList_question-itm{
+                margin: 3em auto;
+                
+                h2{
+                    font-weight: 500;
+                    font-size: 2.3em;
+                }
+
+                p{
+                    font-size: 1.6em;
+                    color: $base-red;
+                    margin-bottom: 10px;
+                }
+                
+                .itm-subList{
+                    display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+                    flex-flow: column;
+                    font-size: 1.6em;
+                    textarea{
+                        height: 100px;
+                        font-size: 1.6rem;
+                    }
+                    
+                    .itm-sub{
+                        width: 50%;
+                        margin: auto;
+                        display: grid;
+                        align-items: center;
+                        grid-template-columns: 1fr 1fr;
+
+                        label{
+                            text-align: right;
+                            margin: 0 5px;
+                        }
+
+                        .sub_other{
+                            display: flex;
+                            align-items: center;
+                            input{
+                                &[type=radio]{
+                                    width: fit-content;
+                                }
+                                &:last-child{
+                                    margin: 0 5px;
+                                }
+                                width: 80%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    .survey-submit{
+        cursor: pointer;
+        width: 20%;
+        padding: 10px 0;
+        font-size: 1.3em;
+        font-weight: 500;
+        border: none;
+        background-color: $base-black;
+        color: #fff;
+    }
+
+}
+
