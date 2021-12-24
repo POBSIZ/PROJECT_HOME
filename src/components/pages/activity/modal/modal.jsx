@@ -65,7 +65,7 @@ function Showimg({data,detail_id}){
     const baseurl = 'http://3.35.43.53/'
     const change_img_index = (check) => {
         if (check=='plus') {
-            if (img_index < data.images.length-1)
+            if (img_index < data.data.length-1)
             set_img_index(img_index+1)
         }
         if (check=='minus') {
@@ -77,7 +77,7 @@ function Showimg({data,detail_id}){
         Aos.init()
             return(
             <div className='img_div_box'>
-                <img data-aos="fade-right" className='img_div_img' src={baseurl + data.images[img_index]}></img>
+                <img data-aos="fade-right" className='img_div_img' src={baseurl + data.data[img_index].images}></img>
             </div>
             )
     }
@@ -91,7 +91,7 @@ function Showimg({data,detail_id}){
                             왼쪽
                         </button>
                         <div  className='img_div_page'>
-                            {img_index+1} / {data.images.length}
+                            {img_index+1} / {data.data.length}
                         </div>
                         <button onClick={()=>change_img_index('plus')} className='img_div_arrow'>
                             오른쪽
@@ -101,7 +101,7 @@ function Showimg({data,detail_id}){
                     </div>
                 </div>
                 <div className='text_div'>
-                    설명칸입니다.
+                    {data.data[img_index].description}
                     </div>
             </div>
     )

@@ -40,10 +40,6 @@ function Secondpage({match,location,history}) {
         setmodal(!modal)
     }
 
-    useEffect(()=>{
-        console.log('세컨드',detail_id)
-    },[detail_id])
-
 
 
     const Print_box = () => {
